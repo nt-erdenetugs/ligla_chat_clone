@@ -1,0 +1,18 @@
+import { pgEnum } from "drizzle-orm/pg-core"
+
+export const conditionoperator = pgEnum("conditionoperator", ['EQUAL', 'NOT_EQUAL', 'INCLUDE', 'NOT_INCLUDE', 'REGEX', 'NULL', 'NOT_NULL', 'GT', 'LT', 'GTE', 'LTE', 'VALUES_MATCH_ANY', 'VALUES_DO_NOT_MATCH_ANY'])
+export const contenttype = pgEnum("contenttype", ['TEXT', 'IMAGE', 'VIDEO', 'AUDIO', 'FILE', 'LOCATION', 'STICKER'])
+export const logicaloperator = pgEnum("logicaloperator", ['AND', 'OR'])
+export const userstatus = pgEnum("userstatus", ['ACTIVE', 'INACTIVE', 'PENDING', 'LOCKED'])
+export const valuetype = pgEnum("valuetype", ['STRING', 'NUMBER', 'ARRAY', 'BOOLEAN', 'DATETIME'])
+export const activitytype = pgEnum("activitytype", ['STATUS_CHANGE', 'USER_CHANGE', 'TEAMS_CHANGE', 'END_SESSION', 'USER_FOLLOWED', 'USER_UNFOLLOWED', 'USER_FOLLOWED_NEW', 'USER_ADDED', 'SESSION_TIMEOUT'])
+export const attributetype = pgEnum("attributetype", ['string', 'number', 'boolean', 'selection', 'calendar', 'time', 'datetime', 'date'])
+export const chatStatus = pgEnum("chatStatus", ['PENDING', 'ADDRESSING', 'DONE'])
+export const chatactivityactortype = pgEnum("chatactivityactortype", ['USER', 'SYSTEM'])
+export const chatstatus = pgEnum("chatstatus", ['PENDING', 'ADDRESSING', 'DONE'])
+export const filefolder = pgEnum("filefolder", ['PENDING', 'PROCESSED', 'FAILED'])
+export const filestatus = pgEnum("filestatus", ['UPLOADING', 'PENDING_SCAN', 'SCANNED', 'VIRUS_DETECTED', 'DELETED'])
+export const filetype = pgEnum("filetype", ['DOCUMENT', 'IMAGE', 'VIDEO', 'AUDIO', 'ARCHIVE'])
+export const roletype = pgEnum("roletype", ['ADMIN', 'ADMIN_OPERATOR', 'MANAGER', 'MANAGER_OPERATOR', 'OPERATOR'])
+export const sendertype = pgEnum("sendertype", ['END_USER', 'OPERATOR', 'SYSTEM'])
+export const sentmethod = pgEnum("sentmethod", ['push', 'reply'])

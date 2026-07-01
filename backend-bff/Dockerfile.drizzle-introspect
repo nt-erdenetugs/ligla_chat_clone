@@ -1,0 +1,18 @@
+FROM node:22.21.0-alpine
+
+WORKDIR /code/drizzle-introspect
+
+COPY ./backend-bff/drizzle-introspect/package*.json ./
+RUN npm ci --omit=dev --omit=optional \
+    && npm cache clean --force
+
+RUN mkdir -p /code/drizzle/raw
+
+COPY ./backend-bff/drizzle-introspect/run-introspection.js ./run-introspection.js
+COPY ./backend-bff/drizzle.config.ts /code/drizzle.config.ts
+
+ARG ENV
+COPY ./secret/credentials.${ENV}.json /tmp/keys/credentials.json
+ENV GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+
+CMD ["npm", "run", "introspect"]

@@ -1,0 +1,2 @@
+export const MIN_STATEMENTS_IN_SUBGROUP = 2;
+export const NESTED_GROUP_MAX_DEPTH = 10;

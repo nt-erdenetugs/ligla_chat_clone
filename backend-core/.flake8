@@ -1,0 +1,57 @@
+[flake8]
+filename = ./app/*
+max-line-length = 120
+
+exclude =
+    .git,
+    __pycache__,
+    *.json,
+    alembic,
+    old,
+    build,
+    dist,
+    .pytest_cache,
+    .DS_Store,
+    .venv,
+    migrations,
+    .mypy_cache,
+    .tox,
+    .eggs,
+    *.egg-info
+
+ignore =
+    # ANN101 - Missing type annotation for self in method
+    ANN101,
+    # ANN102 - Missing type annotation for cls in classmethod
+    ANN102,
+    # ANN401 - Dynamically typed expressions (Any) are disallowed
+    ANN401,
+    # E203 - whitespace before ':' (conflicts with Black)
+    E203,
+    # E501 - line too long (handled by Black with 120 char limit)
+    E501,
+    # W503 - line break before binary operator (conflicts with Black)
+    W503,
+    # F401 - imported but unused (handled per-file)
+    F401,
+    # F403 - import * used; unable to detect undefined names
+    F403,
+    # F405 - name may be undefined, or defined from star imports
+    F405,
+    # D100-D107 - Missing docstrings in various contexts
+    D100,D101,D102,D103,D104,D105,D106,D107,
+    # D200-D205 - Docstring formatting issues
+    D200,D201,D202,D203,D204,D205,
+    # D400-D415 - Docstring content issues
+    D400,D401,D402,D403,D404,D405,D406,D407,D408,D409,D410,D411,D412,D413,D414,D415
+
+per-file-ignores =
+    __init__.py: F401,F403,F405
+    settings.py: F403,F405
+    models.py: F403,F405
+    alembic/*: ALL
+    tests/*: DALL000,ANN
+
+count = True
+max-complexity = 10
+statistics = True

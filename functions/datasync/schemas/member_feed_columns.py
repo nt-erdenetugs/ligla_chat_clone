@@ -1,0 +1,70 @@
+from pydantic import Field, field_validator, ConfigDict
+from schemas.csv_data import CSVData
+
+
+class MemberFeedColumnAlias(CSVData):
+    category1: str | None = Field(None, alias="category_1")
+    category2: str | None = Field(None, alias="category_2")
+    category3: str | None = Field(None, alias="category_3")
+    category4: str | None = Field(None, alias="category_4")
+    category5: str | None = Field(None, alias="category_5")
+    category6: str | None = Field(None, alias="category_6")
+    category7: str | None = Field(None, alias="category_7")
+    category8: str | None = Field(None, alias="category_8")
+    category9: str | None = Field(None, alias="category_9")
+    category10: str | None = Field(None, alias="category_10")
+    category11: str | None = Field(None, alias="category_11")
+    category12: str | None = Field(None, alias="category_12")
+    category13: str | None = Field(None, alias="category_13")
+    category14: str | None = Field(None, alias="category_14")
+    category15: str | None = Field(None, alias="category_15")
+    category16: str | None = Field(None, alias="category_16")
+    category17: str | None = Field(None, alias="category_17")
+    category18: str | None = Field(None, alias="category_18")
+    category19: str | None = Field(None, alias="category_19")
+    category20: str | None = Field(None, alias="category_20")
+    category21: str | None = Field(None, alias="category_21")
+    category22: str | None = Field(None, alias="category_22")
+    category23: str | None = Field(None, alias="category_23")
+    category24: str | None = Field(None, alias="category_24")
+    category25: str | None = Field(None, alias="category_25")
+
+    number1: str | None = Field(None, alias="number_1")
+    number2: str | None = Field(None, alias="number_2")
+    number3: str | None = Field(None, alias="number_3")
+    number4: str | None = Field(None, alias="number_4")
+    number5: str | None = Field(None, alias="number_5")
+    number6: str | None = Field(None, alias="number_6")
+    number7: str | None = Field(None, alias="number_7")
+    number8: str | None = Field(None, alias="number_8")
+    number9: str | None = Field(None, alias="number_9")
+    number10: str | None = Field(None, alias="number_10")
+    number11: str | None = Field(None, alias="number_11")
+    number12: str | None = Field(None, alias="number_12")
+    number13: str | None = Field(None, alias="number_13")
+    number14: str | None = Field(None, alias="number_14")
+    number15: str | None = Field(None, alias="number_15")
+
+    datetime1: str | None = Field(None, alias="datetime_1")
+    datetime2: str | None = Field(None, alias="datetime_2")
+    datetime3: str | None = Field(None, alias="datetime_3")
+    datetime4: str | None = Field(None, alias="datetime_4")
+    datetime5: str | None = Field(None, alias="datetime_5")
+    datetime6: str | None = Field(None, alias="datetime_6")
+    datetime7: str | None = Field(None, alias="datetime_7")
+    datetime8: str | None = Field(None, alias="datetime_8")
+    datetime9: str | None = Field(None, alias="datetime_9")
+    datetime10: str | None = Field(None, alias="datetime_10")
+    datetime11: str | None = Field(None, alias="datetime_11")
+    datetime12: str | None = Field(None, alias="datetime_12")
+    datetime13: str | None = Field(None, alias="datetime_13")
+    datetime14: str | None = Field(None, alias="datetime_14")
+    datetime15: str | None = Field(None, alias="datetime_15")
+
+    model_config = ConfigDict(populate_by_name=True)
+
+    @field_validator("*", mode="before")
+    def empty_string_to_none(cls, v):
+        if v == "":
+            return None
+        return v

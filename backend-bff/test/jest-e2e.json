@@ -1,0 +1,53 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": ["ts-jest", {}]
+  },
+  "setupFiles": ["<rootDir>/test/setup-env.ts"],
+  "moduleNameMapper": {
+    "^~/(.*)$": "<rootDir>/src/$1",
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@@/(.*)$": "<rootDir>/$1"
+  },
+  "transformIgnorePatterns": [
+    "/node_modules/(?!(@nestjs|uuid)/)"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/drizzle/"
+  ],
+  "testTimeout": 30000,
+  "maxWorkers": 1,
+  "bail": false,
+  "verbose": true,
+  "forceExit": false,
+  "detectOpenHandles": true,
+  "collectCoverageFrom": [
+    "src/modules/**/*.resolver.ts",
+    "src/modules/**/*.service.ts",
+    "!src/modules/**/entities/*.ts",
+    "!src/modules/**/dto/*.ts",
+    "!src/modules/**/enums/**",
+    "!src/modules/**/constants/**",
+    "!src/**/*.module.ts",
+    "!src/drizzle/**"
+  ],
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "/drizzle/",
+    "/src/drizzle/",
+    "/dist/",
+    "\\.module\\.ts$",
+    "\\.interface\\.ts$",
+    "\\.enum\\.ts$",
+    "\\.constant\\.ts$",
+    "/enums/",
+    "/constants/"
+  ],
+  "coverageDirectory": "./test/coverage-e2e",
+  "coverageReporters": ["json", "lcov", "text", "html"],
+  "coverageProvider": "v8"
+}

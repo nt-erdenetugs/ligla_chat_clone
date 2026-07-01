@@ -1,0 +1,121 @@
+services:
+  backend-core-prd:
+    image: chat_core:prd
+    build:
+      context: .
+      dockerfile: backend-core/Dockerfile.prd
+      platforms:
+        - linux/amd64
+    platform: linux/amd64
+    volumes:
+      - ./backend-core/:/code/
+      - ./secret/credentials.prd.json:/tmp/keys/credentials.json:ro
+      - ./secret/.env.prd:/tmp/keys/.env.prd:ro
+      - cloudsql_prd:/cloudsql
+    env_file:
+      - ./secret/.env.prd
+    ports:
+      - 8080:8080
+    depends_on:
+      - cloudsql-proxy-prd
+    networks:
+      - network_back_prd
+    environment:
+      - ENV=production
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+      - SERVICE_ACCOUNT=chat-system@tt-ligla-prd.iam.gserviceaccount.com
+
+  backend-bff-prd:
+    image: chat_bff:prd
+    build:
+      context: .
+      dockerfile: backend-bff/Dockerfile.prd
+      platforms:
+        - linux/amd64
+    platform: linux/amd64
+    command: npm run start:prd
+    volumes:
+      - ./backend-bff/:/code
+      - ./secret/credentials.prd.json:/tmp/keys/credentials.json:ro
+      - bff_node_modules_prd:/code/node_modules
+      - cloudsql_prd:/cloudsql
+    ports:
+      - 3000:3000
+    env_file:
+      - ./secret/.env.prd
+    depends_on:
+      - cloudsql-proxy-prd
+    networks:
+      - network_back_prd
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+
+  frontend-prd:
+    image: chat_front:prd
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.prd
+    command: npm run start:prd
+    volumes:
+      - ./frontend/:/code
+      - ./backend-bff/src/schema.gql:/code/src/schema.gql
+      - front_node_modules_prd:/code/node_modules
+    env_file:
+      - ./secret/.env.prd
+    ports:
+      - 8001:8001
+    depends_on:
+      - backend-bff-prd
+    networks:
+      - network_back_prd
+
+  chat-member-feed-sync-prd:
+    image: chat_member_feed_sync:prd
+    build:
+      context: .
+      dockerfile: worker/member-feed-data-sync/Dockerfile.prd
+      platforms:
+        - linux/amd64
+    platform: linux/amd64
+    volumes:
+      - ./worker/member-feed-data-sync/:/code/
+      - ./secret/credentials.prd.json:/tmp/keys/credentials.json:ro
+      - ./secret/.env.prd:/tmp/keys/.env.prd:ro
+      - cloudsql_prd:/cloudsql
+    env_file:
+      - ./secret/.env.prd
+    ports:
+      - 8081:8080
+    depends_on:
+      - cloudsql-proxy-prd
+    networks:
+      - network_back_prd
+    environment:
+      - ENV=production
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+      - SERVICE_ACCOUNT=chat-system@tt-ligla-prd.iam.gserviceaccount.com
+
+  cloudsql-proxy-prd:
+    image: gcr.io/cloudsql-docker/gce-proxy:1.19.1
+    user: root
+    platform: linux/amd64
+    command:
+      - "/cloud_sql_proxy"
+      - "-dir=/cloudsql"
+      - "-instances=${CLOUD_SQL_CONNECTION_NAME}"
+      - "-credential_file=/config/credentials.json"
+    volumes:
+      - ./secret/credentials.prd.json:/config/credentials.json:ro
+      - cloudsql_prd:/cloudsql
+    networks:
+      - network_back_prd
+
+volumes:
+  cloudsql_prd:
+  bff_node_modules_prd:
+  front_node_modules_prd:
+
+networks:
+  network_back_prd:

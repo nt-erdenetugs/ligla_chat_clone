@@ -1,0 +1,207 @@
+{
+  "auth": {
+    "success": {
+      "resetLink": "Password reset link sent to user's email",
+      "resetPassword": "Password has been reset successfully",
+      "reInvite": "The user has been reinvited",
+      "updateName": "Saved Account Name",
+      "updateSenderName": "Saved Sender Name",
+      "updatePassword": "Password Change Saved",
+      "updateProfile": "Profile updated successfully"
+    },
+    "info": {
+      "sessionExpired": "Session expired. Please log in again"
+    }
+  },
+  "operatorSelector": {
+    "error": {
+      "onlyYourself": "You can only assign yourself into unassigned chat",
+      "notAuthorized": "You are not authorized to assign this chat",
+      "cannotReassignToOtherTeam": "You cannot reassign an operator to the chat that has been assigned by an other team",
+      "cannotAssignToOtherTeam": "You cannot assign an operator to the chat that has been assigned by an other team"
+    }
+  },
+  "copy": {
+    "copiedToClipboard": "クリップボードにコピーしました"
+  },
+  "organization": {
+    "success": {
+      "create": "Organization created successfully",
+      "update": "Organization updated successfully"
+    }
+  },
+  "team": {
+    "success": {
+      "create": "Team created successfully",
+      "update": "Team updated successfully",
+      "disable": "Team disabled successfully"
+    },
+    "error": {
+      "mustHaveOneTeam": "You must assign at least one team to the chat",
+      "mustHaveOneOperator": "You must assign at least one operator to the chat",
+      "cannotRemoveYourTeam": "You cannot remove a team that you are not part of",
+      "cannotRemoveDefaultTeamWithAdmin": "You cannot remove default team with assigned admin",
+      "cannotRemoveTeamWithOperators": "You cannot remove a team that has the assigned operator",
+      "notAuthorizedToAssignChat": "You are not authorized to assign a team to a chat"
+    }
+  },
+  "user": {
+    "success": {
+      "create": "User created successfully",
+      "update": "User updated successfully",
+      "disable": "User disabled successfully"
+    },
+    "warning": {
+      "nameTooLongToSendMessage": "Your account name was shortened before being sent. Please update it to fit within {{limit}} characters."
+    }
+  },
+  "chat": {
+    "success": {
+      "status": {
+        "autoChanged": "Chat status automatically changed to '{{ status }}' after your reply",
+        "changed": "Chat status successfully changed to '{{ status }}'"
+      },
+      "message": {
+        "retried": "Message successfully retried.",
+        "delete": "Message successfully deleted."
+      },
+      "uploadLink": {
+        "sent": "Upload link sent to the user."
+      },
+      "file": {
+        "upload": "File successfully uploaded.",
+        "delete": "File successfully deleted.",
+        "download": "File successfuly downloaded."
+      }
+    },
+    "error": {
+      "message": {
+        "retried": "Failed to retry message.",
+        "delete": "Failed to delete message.",
+        "send": "Failed to send message."
+      },
+      "uploadLink": {
+        "build": "Could not prepare upload link. Please check the LIFF URL.",
+        "failed": "Failed to send upload link."
+      },
+      "file": {
+        "upload": "Failed to upload file.",
+        "download": "Failed to download file.",
+        "delete": "Failed to delete file.",
+        "permission": "You do not have permission to upload file.",
+        "invalidType": "File type not supported.",
+        "duplicateName": "A file with the same name is already staged.",
+        "empty": "Empty file cannot be uploaded.",
+        "tooLarge": "File is too large. Maximum allowed size is {{fileSize}}.",
+        "disguised": "The file contents do not match its file type or extension."
+      },
+      "liff": {
+        "login": "Failed to open LINE login. Please try again."
+      }
+    },
+    "info": {
+      "tabAutoSwitched": "The chat list tab was automatically switched."
+    }
+  },
+  "chatReplySetting": {
+    "success": {
+      "create": "Chat reply setting created successfully",
+      "update": "Chat reply setting updated successfully"
+    },
+    "error": {
+      "create": "Failed to create chat reply setting",
+      "update": "Failed to update chat reply setting"
+    }
+  },
+  "attribute": {
+    "success": {
+      "create": "Attribute created successfully",
+      "update": "Attribute updated successfully",
+      "disable": "Attribute disabled successfully",
+      "fill": "Attribute filled successfully"
+    },
+    "error": {
+      "noAttributeSelected": "No attribute selected",
+      "duplicatedSelectOptions": "Duplicated select options provided"
+    }
+  },
+  "tag": {
+    "success": {
+      "create": "Tag created successfully",
+      "update": "Tag updated successfully",
+      "disable": "Tag disabled successfully"
+    }
+  },
+  "note": {
+    "success": {
+      "create": "Note created successfully",
+      "update": "Note updated successfully",
+      "delete": "Note deleted successfully"
+    }
+  },
+  "common": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "loading": "Loading..."
+  },
+  "pwa": {
+    "installPrompt": "Install this app for a better experience with offline access and quick launch from your home screen.",
+    "installBtn": "Install Now",
+    "installInstructionsIOS": "To install this app on your iOS device, follow these steps:",
+    "unsupportedMessage": "App installation is not supported on this device. You can continue using the web version.",
+    "dontShowAgain": "Don't show this again",
+    "installationSuccess": "App installed successfully! You can now access it from your home screen.",
+    "installationDismissed": "App installation canceled. You can install it later from the browser menu.",
+    "installationError": "Failed to install the app. Please try again or install manually from your browser.",
+    "iosInstall": {
+      "step1": "Open this website in Safari browser",
+      "step2": "Tap the Share button at the bottom",
+      "step3": "Select 'Add to Home Screen'"
+    },
+    "storage": {
+      "quotaExceeded": "Storage is full. Please free up space to save your preferences.",
+      "disabled": "Browser storage is disabled. Some features may not work properly.",
+      "error": "Unable to save preferences. Please try again."
+    }
+  },
+  "memberFeed": {
+    "success": {
+      "update": "Member Feed updated successfully",
+      "restore": "Member Feed restored successfully"
+    }
+  },
+  "survey": {
+    "success": {
+      "update": "Survey settings updated successfully",
+      "restore": "Survey settings restored successfully"
+    }
+  },
+  "chatAssignRules": {
+    "success": {
+      "create": "Assignment rule created successfully",
+      "update": "Assignment rule updated successfully",
+      "delete": "Assignment rule deleted successfully"
+    },
+    "error": {
+      "noRuleSelected": "No rule selected"
+    }
+  },
+  "chatAssignFilters": {
+    "success": {
+      "create": "Filter created successfully",
+      "update": "Filter updated successfully",
+      "delete": "Filter deleted successfully"
+    },
+    "error": {
+      "noFilterSelected": "No filter selected"
+    }
+  },
+  "filter": {
+    "error": {
+      "applyFailed": "Failed to apply filters",
+      "validation": "Invalid filter input",
+      "saveFailed": "Failed to save filters",
+      "searchFailed": "Filter search failed"
+    }
+  }
+}

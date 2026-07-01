@@ -1,0 +1,59 @@
+query ChatFilesForEndUser($take: Int, $cursorId: String, $cursorCreatedAt: DateTime) {
+  chatFilesForEndUser(take: $take, cursorId: $cursorId, cursorCreatedAt: $cursorCreatedAt) {
+    items {
+      id
+      chatId
+      fileName
+      originalFileName
+      fileSize
+      mimeType
+      status
+      createdAt
+      uploaderOperatorId
+      uploaderEndUserId
+      uploaderOperatorName
+      uploaderEndUserName
+    }
+    nextCursorId
+    nextCursorCreatedAt
+    hasMore
+    totalCount
+  }
+}
+
+query ChatFileDownloadUrlForEndUser($input: DownloadChatFileEndUserInput!) {
+  chatFileDownloadUrlForEndUser(input: $input) {
+    signedUrl
+    fileName
+    mimeType
+  }
+}
+
+mutation UploadChatFileForEndUser($input: UploadChatFileEndUserInput!) {
+  uploadChatFileForEndUser(input: $input) {
+    signedUrl
+    chatFile {
+      id
+    }
+  }
+}
+
+mutation DeleteChatFileForEndUser($input: DeleteChatFileEndUserInput!) {
+  deleteChatFileForEndUser(input: $input) {
+    success
+  }
+}
+
+mutation ConfirmChatFileUploadForEndUser($input: ConfirmChatFileUploadEndUserInput!) {
+  confirmChatFileUploadForEndUser(input: $input) {
+    success
+    chatFile {
+      id
+      fileName
+      originalFileName
+      fileSize
+      mimeType
+      status
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "sentMedia": "Sent a media",
+  "unassigned": "Unassigned",
+  "messages": "Messages",
+  "assignedToMe": "Assigned to me",
+  "unknown": "Unknown",
+  "noChatSelected": "No chat selected",
+  "noMessagesInThisChat": "No messages in this chat.",
+  "noChatList": "Inbox is empty",
+  "youDontHavePermission": "You don't have permission to send message this user",
+  "blockedByUser": "Messaging disabled: you have been blocked from this conversation.",
+  "enterMessage": "Enter a message. Press Ctrl/Cmd + Enter to send.",
+  "enterMessageOnMobile": "Enter a message",
+  "selectTeamsOperators": "Select teams and operator",
+  "edited": "Edited",
+  "msgCantBeEmpty": "Cannot send an empty message",
+  "msgExceedsCharLimit": "Message exceeds the character limit",
+  "errorWhileSendingMsg": "An unexpected error occurred while sending the message",
+  "cantSendMsgToCompletedChat": "You can't message in completed chat",
+  "youHaveNewMessage": "You have new message",
+  "sendingFailed": "Could not sent",
+  "unassignedChatCount": "Unassigned chat count",
+  "sending": "sending...",
+  "retrying": "retrying...",
+  "failedToSend": "send failed!",
+  "videoMessage": "Video message",
+  "audioMessage": "Audio message",
+  "imageMessage": "Sent an image",
+  "fileMessage": "File message",
+  "locationMessage": "Location message",
+  "stickerMessage": "Sticker message",
+  "unsupportedMessage": "Unsupported message type",
+  "messageUnsent": "This message was unsent",
+  "videoNotAccessible": "Video content is not accessible at the moment. This feature will be available soon",
+  "chatInfo": "Chat info",
+  "action": {
+    "send": "Send",
+    "cancel": "Cancel",
+    "chatList": {
+      "open": "Open chats",
+      "close": "Close chats"
+    },
+    "chatInfo": {
+      "open": "Open info",
+      "close": "Close info"
+    }
+  },
+  "status": {
+    "title": "Status",
+    "pending": "Pending",
+    "addressing": "Addressing",
+    "done": "Done"
+  },
+  "chatAttributes": {
+    "attributes": "Attributes",
+    "noList": "Attribute is empty"
+  },
+  "chatSurveys": {
+    "noList": "Survey is empty"
+  },
+  "chatFeeds": {
+    "memberInfo": "Member Feed",
+    "memberId": "Member ID",
+    "noList": "Member feed is empty"
+  },
+  "chatTags": {
+    "tags": "Tags",
+    "enterTagValue": "Enter a tag value",
+    "noOptionsText": "No option found"
+  },
+  "chatNotes": {
+    "notes": "Notes",
+    "enterNoteValue": "Enter a note value",
+    "noteValueRequired": "Note value is required",
+    "noteValueTooLong": "Note value is too long",
+    "addedBy": "Added by",
+    "editedBy": "Last edited"
+  },
+  "chatSurvey": {
+    "surveyInfo": "Survey information",
+    "noList": "No survey information found"
+  },
+  "activity": {
+    "chatStarted": "Chat started",
+    "chatEnded": "Chat ended",
+    "sessionTimeout": "Chat session timed out",
+    "userAdded": "User has been added",
+    "userBlocked": "User blocked",
+    "userUnblocked": "User unblocked",
+    "userFollowed": "User has followed the account",
+    "newMessages": "New messages",
+    "statusChangedByUser": "{{actorUserName}} changed status to \"{{status}}\"",
+    "statusChangedBySystem": "System changed status to \"{{status}}\" automatically",
+    "assignedUserChangedByUser": "{{actorUserName}} assigned to \"{{assignedUserName}}\"",
+    "assignedUserChangedBySystem": "System assigned to \"{{assignedUserName}}\"",
+    "teamAssignedByUser": "{{actorUserName}} assigned team \"{{teamName}}\"",
+    "teamAssignedBySystem": "System assigned team \"{{teamName}}\"",
+    "teamUnassigned": "{{actorUserName}} unassigned team \"{{teamName}}\"",
+    "unavailable": "Unavailable activity log"
+  },
+  "chatReplySetting": {
+    "title": "Auto Reply",
+    "status": "Auto Reply",
+    "useHolidaysTitle": "Public Holidays",
+    "useHolidaysDesc": "Activate on public holidays",
+    "useCustomDatesTitle": "Custom Dates",
+    "useCustomDatesDesc": "Activate on specific dates",
+    "selectCustomDates": "Select dates",
+    "selectedCustomDates": "Selected dates",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "messageTooLong": "Message is too long",
+    "activeTimeMessage": {
+      "label": "During Active",
+      "placeholder": "This message will be sent to users when they send a message during active time."
+    },
+    "defaultMessage": {
+      "label": "During Inactive",
+      "placeholder": "This message will be sent to users when they send a message outside of active time."
+    },
+    "scheduleLabel": {
+      "MONDAY": "Mon",
+      "TUESDAY": "Tue",
+      "WEDNESDAY": "Wed",
+      "THURSDAY": "Thu",
+      "FRIDAY": "Fri",
+      "SATURDAY": "Sat",
+      "SUNDAY": "Sun",
+      "HOLIDAYS": "Holidays",
+      "CUSTOM_DATE": "Dates"
+    },
+    "scheduleFullLabel": {
+      "MONDAY": "Monday",
+      "TUESDAY": "Tuesday",
+      "WEDNESDAY": "Wednesday",
+      "THURSDAY": "Thursday",
+      "FRIDAY": "Friday",
+      "SATURDAY": "Saturday",
+      "SUNDAY": "Sunday",
+      "HOLIDAYS": "Holidays",
+      "CUSTOM_DATE": "Custom Dates"
+    },
+    "timeRangePicker": {
+      "completeLastRangeToAdd": "Complete the last time range to add",
+      "completeAllRangesToSave": "Complete all time ranges to save"
+    }
+  },
+  "fileUpload": {
+    "confirmDelete": "Are you sure you want to delete this file?",
+    "virusDetected": "Virus detected",
+    "virusScanPending": "Virus scan pending",
+    "download": "Download",
+    "delete": "Delete",
+    "upload": "Upload",
+    "uploadFile": "Upload file",
+    "attachFile": "Attach file",
+    "viewUploadedFiles": "View uploaded files",
+    "shareUploadLink": "Share upload link",
+    "uploading": "Uploading files...",
+    "uploadComplete": "File uploaded",
+    "uploaderOperator": "Sender: {{name}}",
+    "uploaderEndUser": "Sender: {{name}}",
+    "headerTitle": "File list",
+    "pageTitle": "File sharing app",
+    "noFilesUploadedYet": "No files uploaded",
+    "loadError": "Failed to load more files",
+    "loginToLine": "Login",
+    "dropTitle": "Drop files to upload",
+    "dropUploading": "Uploading…"
+  }
+}

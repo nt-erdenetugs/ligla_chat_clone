@@ -1,0 +1,23 @@
+runtime: nodejs22
+service: default
+
+handlers:
+  - url: /chat/(.*\..+)$
+    static_files: build/\1
+    upload: build/(.*\..+)$
+    secure: always
+  - url: /chat/.*
+    static_files: build/index.html
+    upload: build/index.html
+    secure: always
+  - url: /chat
+    static_files: build/index.html
+    upload: build/index.html
+    secure: always
+
+env_variables:
+  PORT: '8001'
+  NODE_ENV: 'production'
+  VITE_BACKEND_URL: 'https://autoline.link/chat'
+  VITE_APP_BASE_PATH: '/chat'
+  VITE_VAPID_PUBLIC_KEY: 'BOkITA1NxseN109FNlsy2iNFrGKhCo_9HBCpQgNTS30ONo-7HSeS-CGvNbLHd-qqwFw4jIpK4aOnnuWmUNKf0jM'

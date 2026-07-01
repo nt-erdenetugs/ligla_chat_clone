@@ -1,0 +1,10 @@
+# gcloud ignore
+
+.gcloudignore
+.git
+.gitignore
+__pycache__/
+
+/setup.cfg
+.env*
+cred.json

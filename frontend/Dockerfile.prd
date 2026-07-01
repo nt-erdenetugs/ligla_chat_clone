@@ -1,0 +1,15 @@
+FROM --platform=linux/amd64 node:22.21.0-alpine
+
+RUN apk update \
+	&& apk add --no-cache openssl \
+	&& rm -rf /var/cache/apk/* /var/lib/apt/lists/*
+
+WORKDIR /code
+
+ENV GENERATE_SOURCEMAP=false
+ENV NODE_OPTIONS=--max-old-space-size=4096
+
+COPY ./frontend/package*.json .
+RUN npm install
+
+EXPOSE 8001

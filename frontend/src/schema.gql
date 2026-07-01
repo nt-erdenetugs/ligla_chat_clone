@@ -1,0 +1,1380 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+Defines whether the chat activity is a status change or an assignee change
+"""
+enum ActivityType {
+  END_SESSION
+  SESSION_TIMEOUT
+  STATUS_CHANGE
+  TEAMS_CHANGE
+  USER_ADDED
+  USER_CHANGE
+  USER_FOLLOWED
+  USER_FOLLOWED_NEW
+  USER_UNFOLLOWED
+}
+
+"""Defines whether the chat activity actor is system or user"""
+enum ActorType {
+  SYSTEM
+  USER
+}
+
+"""The `Any` scalar type represents any JSON value"""
+scalar Any
+
+type Attribute {
+  chatId: String
+  createdAt: DateTime!
+  id: String!
+  isActive: Boolean!
+  isEncryptionEnabled: Boolean!
+  name: String!
+  selectOption: [SelectOption!]
+  type: AttributeType
+}
+
+enum AttributeType {
+  boolean
+  calendar
+  date
+  datetime
+  number
+  selection
+  string
+  time
+}
+
+type AttributeValue {
+  attributeId: String!
+  chatId: String!
+  createdAt: DateTime!
+  id: String!
+  user: BaseUser!
+  userId: String!
+  value: String!
+}
+
+type AttributesWithCount {
+  count: Int!
+  items: [Attribute!]!
+}
+
+type Auth {
+  accessToken: String!
+}
+
+type BaseOrganization {
+  displayName: String!
+  fileUploadLiffId: String
+  id: String!
+  name: String!
+}
+
+type BaseTeam {
+  createdAt: DateTime!
+  id: String!
+  name: String!
+}
+
+type BaseUser {
+  displayName: String!
+  id: String!
+  senderName: String
+}
+
+"""
+The `BigInt` scalar type represents non-fractional signed whole numeric values.
+"""
+scalar BigInt
+
+type Chat {
+  assignedUser: User
+  assignedUserId: String
+  chatActivities: [ChatActivity!]!
+  chatAttributeValues: [AttributeValue!]!
+  chatMessages: [ChatMessage!]!
+  chatStatus: ChatStatus!
+  chatTags: [ChatTag!]!
+  chatTeamAssignment: [ChatTeamAssignment!]!
+  chatUnreadCount: Int!
+  createdAt: DateTime!
+  endUser: EndUser!
+  endUserId: String!
+  id: String!
+  isUserBlocked: Boolean!
+  latestMessageTimestamp: DateTime
+  latestReadTimestamp: DateTime
+  sessionActive: Boolean!
+}
+
+type ChatActivity {
+  activityType: ActivityType!
+  actorId: String
+  actorType: ActorType!
+  actorUserName: String
+  changedTeamId: String
+  changedTeamName: String
+  chatId: String!
+  createdAt: DateTime!
+  id: String!
+  newStatus: ChatStatus
+  newUserId: String
+  newUserName: String
+  oldStatus: ChatStatus
+  oldUserId: String
+  oldUserName: String
+  teamAssignAction: ChatTeamAssignActionsType
+}
+
+type ChatAssignCondition {
+  field: String!
+  operator: ConditionOperator!
+  value: String
+  valueObjects: [ConditionValue!]
+  valueType: ValueType!
+}
+
+type ChatAssignConditionGroup {
+  conditions: [ChatAssignCondition!]!
+  logicalOperator: LogicalOperator!
+  subGroups: [ChatAssignConditionGroup!]
+}
+
+type ChatAssignFilter {
+  createdAt: DateTime!
+  id: String!
+  isActive: Boolean!
+  name: String!
+  note: String
+  rootConditionGroup: ChatAssignConditionGroup!
+  targetTable: FilterTargetType!
+  updatedAt: String
+}
+
+type ChatAssignFilterGroup {
+  filters: [ChatAssignFilterItem!]!
+  id: String!
+  logicalOperator: LogicalOperator!
+  subGroups: [ChatAssignFilterGroup!]
+}
+
+type ChatAssignFilterItem {
+  id: String!
+  name: String!
+  targetTable: FilterTargetType!
+}
+
+type ChatAssignFiltersWithCount {
+  count: Int!
+  items: [ChatAssignFilter!]!
+}
+
+input ChatAssignInput {
+  assignedUserId: String!
+  chatId: String!
+}
+
+type ChatAssignRule {
+  createdAt: DateTime!
+  id: String!
+  isActive: Boolean!
+  name: String!
+  note: String
+  rootFilterGroup: ChatAssignFilterGroup!
+  targetTeams: [BaseTeam!]!
+  updatedAt: String
+}
+
+type ChatAssignRulesWithCount {
+  count: Int!
+  items: [ChatAssignRule!]!
+}
+
+type ChatCursorPaginatedResponse {
+  hasMore: Boolean!
+  items: [Chat!]!
+  nextCursorCreatedAt: DateTime
+  nextCursorDateParam: DateTime
+  nextCursorId: String
+  nextCursorIntParam: Int
+}
+
+type ChatFile {
+  chatId: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  deletedBy: String
+  fileName: String!
+  fileSize: BigInt!
+  fileType: FileType!
+  gcsObjectKey: String!
+  id: ID!
+  mimeType: String!
+  originalFileName: String!
+  scanResult: String
+  status: FileStatus!
+  storageFolder: FileFolder!
+  updatedAt: DateTime
+  uploaderEndUserId: String
+  uploaderEndUserName: String
+  uploaderOperatorId: String
+  uploaderOperatorName: String
+}
+
+type ChatFileDownloadUrlResponse {
+  fileName: String!
+  mimeType: String!
+  signedUrl: String!
+}
+
+type ChatFileListResponse {
+  hasMore: Boolean!
+  items: [ChatFile!]!
+  nextCursorCreatedAt: DateTime
+  nextCursorId: String
+  totalCount: Int!
+}
+
+type ChatFileUploadResponse {
+  chatFile: ChatFile!
+  signedUrl: String!
+}
+
+input ChatFilterInput {
+  includeUnassigned: Boolean
+  statuses: [ChatStatus!]
+  tagIds: [String!]
+  teamIds: [String!]
+  userIds: [String!]
+}
+
+type ChatItem {
+  activity: ChatActivity
+  createdAt: DateTime!
+  id: ID!
+  itemType: ChatItemType!
+  message: ChatMessage
+}
+
+type ChatItemCursorPaginatedResponse {
+  hasMore: Boolean!
+  items: [ChatItem!]!
+  nextCursorCreatedAt: DateTime
+  nextCursorDateParam: DateTime
+  nextCursorId: String
+  nextCursorIntParam: Int
+}
+
+"""Type of chat item (message or activity)"""
+enum ChatItemType {
+  ACTIVITY
+  MESSAGE
+}
+
+input ChatLatestReadInput {
+  chatId: String!
+  timestamp: DateTime!
+}
+
+type ChatMessage {
+  chatId: String!
+  content: String!
+  contentUrl: String
+  createdAt: DateTime!
+  duration: Float
+  id: String!
+  isDelivered: Boolean!
+  isUnsent: Boolean!
+  latitude: Float
+  longitude: Float
+  markAsReadToken: String
+  messageId: String
+  previewImageUrl: String
+  quoteToken: String
+  quotedMessageId: String
+  sender: Sender!
+  senderId: String!
+  senderType: SenderType!
+  type: ChatMessageType!
+}
+
+input ChatMessageInput {
+  chatId: String!
+  message: ChatMessageToEndUser!
+}
+
+input ChatMessageToEndUser {
+  flex: FlexMessageInput
+  text: String
+  type: ChatMessageType!
+}
+
+enum ChatMessageType {
+  AUDIO
+  FILE
+  FLEX
+  IMAGE
+  LOCATION
+  STICKER
+  TEXT
+  VIDEO
+}
+
+type ChatNote {
+  chatId: String!
+  createdAt: DateTime!
+  id: String!
+  isActive: Boolean!
+  noteValue: String!
+  updatedAt: DateTime
+  user: BaseUser!
+  userId: String!
+}
+
+type ChatReplyMessageTemplate {
+  content: String!
+  contentUrl: String
+  id: ID!
+  previewImageUrl: String
+  type: ChatMessageType!
+  updatedBy: String
+}
+
+type ChatReplySchedule {
+  chatReplyScheduleCustomDates: [DateTime!]!
+  chatReplyScheduleTimeRanges: [ChatReplyScheduleTimeRange!]!
+  id: ID!
+  scheduleType: ChatReplyScheduleType!
+}
+
+type ChatReplyScheduleTimeRange {
+  endTime: String!
+  startTime: String!
+  timeRangeType: ChatReplyTimeRangeType!
+}
+
+enum ChatReplyScheduleType {
+  CUSTOM_DATE
+  FRIDAY
+  HOLIDAYS
+  MONDAY
+  SATURDAY
+  SUNDAY
+  THURSDAY
+  TUESDAY
+  WEDNESDAY
+}
+
+type ChatReplySetting {
+  chatReplySchedules: [ChatReplySchedule!]!
+  chatReplySettingMessages: [ChatReplySettingMessage!]!
+  id: ID!
+  isActive: Boolean!
+  updatedBy: String
+}
+
+type ChatReplySettingMessage {
+  chatReplyMessageTemplate: ChatReplyMessageTemplate!
+  timeRangeType: ChatReplyTimeRangeType!
+}
+
+enum ChatReplyTimeRangeType {
+  ACTIVE_TIME
+  DEFAULT
+}
+
+enum ChatStatus {
+  ADDRESSING
+  DONE
+  PENDING
+}
+
+input ChatStatusInput {
+  chatId: String!
+  status: ChatStatus!
+}
+
+type ChatTag {
+  chatId: String!
+  createdAt: DateTime!
+  id: String!
+  tag: Tag!
+  tagId: String!
+}
+
+input ChatTagInput {
+  chatId: String!
+  tagId: String!
+}
+
+enum ChatTeamAssignActionsType {
+  ADDED
+  REMOVED
+}
+
+input ChatTeamAssignInput {
+  chatId: String!
+  teamId: String!
+}
+
+type ChatTeamAssignment {
+  chatId: String!
+  createdAt: DateTime
+  id: String!
+  team: BaseTeam!
+  teamId: String!
+}
+
+enum ConditionOperator {
+  EQUAL
+  GT
+  GTE
+  INCLUDE
+  LT
+  LTE
+  NOT_EQUAL
+  NOT_INCLUDE
+  NOT_NULL
+  NULL
+  REGEX
+  VALUES_DO_NOT_MATCH_ANY
+  VALUES_MATCH_ANY
+}
+
+type ConditionValue {
+  id: String!
+  name: String!
+}
+
+input ConfirmChatFileUploadEndUserInput {
+  fileId: String!
+}
+
+input ConfirmChatFileUploadInput {
+  fileId: String!
+}
+
+type ConfirmChatFileUploadResponse {
+  chatFile: ChatFile!
+  success: Boolean!
+}
+
+input CreateAttributeInput {
+  isEncryptionEnabled: Boolean! = false
+  name: String!
+  selectOptions: [SelectOptionInput!]
+  type: AttributeType! = string
+}
+
+input CreateChatAssignFilterInput {
+  name: String!
+  note: String
+  rootConditionGroup: CreateConditionGroupInput!
+  targetTable: FilterTargetType!
+}
+
+input CreateChatAssignRuleInput {
+  name: String!
+  note: String
+  rootFilterGroup: CreateFilterGroupInput!
+  targetTeamIds: [String!]!
+}
+
+input CreateChatAttributeValueInput {
+  attributeId: String!
+  chatId: String!
+  value: String!
+}
+
+input CreateChatNoteInput {
+  chatId: String!
+  noteValue: String!
+}
+
+input CreateChatReplyScheduleInput {
+  customDates: [DateTime!]
+  scheduleType: ChatReplyScheduleType!
+  timeRanges: [CreateChatReplyScheduleTimeRangeInput!]!
+}
+
+input CreateChatReplyScheduleTimeRangeInput {
+  endTime: String!
+  startTime: String!
+  timeRangeType: ChatReplyTimeRangeType!
+}
+
+input CreateChatReplySettingInput {
+  isActive: Boolean!
+  messages: [CreateChatReplySettingMessageInput!]!
+  schedules: [CreateChatReplyScheduleInput!]!
+}
+
+input CreateChatReplySettingMessageInput {
+  messageTemplate: ChatMessageToEndUser!
+  timeRangeType: ChatReplyTimeRangeType!
+}
+
+input CreateConditionGroupInput {
+  conditions: [CreateConditionInput!]!
+  logicalOperator: LogicalOperator!
+  subGroups: [CreateConditionGroupInput!]
+}
+
+input CreateConditionInput {
+  field: String!
+  operator: ConditionOperator!
+  value: String
+  valueType: ValueType!
+}
+
+input CreateFilterGroupInput {
+  filterIds: [String!]!
+  logicalOperator: LogicalOperator!
+  subGroups: [CreateFilterGroupInput!]
+}
+
+input CreateOrganizationInput {
+  apiKey: String!
+  description: String
+  displayName: String!
+  emails: [String!]
+  fileUploadLiffId: String!
+  loginLiffId: String!
+  maxOperator: Int!
+  name: String!
+}
+
+input CreateTagInput {
+  name: String!
+}
+
+input CreateTeamInput {
+  managerIds: [String!] = []
+  name: String!
+  operatorIds: [String!] = []
+  storeIds: [String!] = []
+  teamSetting: TeamSettingInput
+}
+
+input CreateUserInput {
+  displayName: String!
+  email: String!
+  roleType: UserRoleType!
+  senderName: String
+  teamIds: [String!]
+}
+
+enum CursorDirection {
+  BACKWARD
+  FORWARD
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeleteChatFileEndUserInput {
+  fileId: String!
+}
+
+input DeleteChatFileInput {
+  fileId: String!
+}
+
+type DeleteChatFileResponse {
+  success: Boolean!
+}
+
+input DeleteMessageInput {
+  chatId: String!
+  messageId: String!
+}
+
+input DownloadChatFileEndUserInput {
+  fileId: String!
+}
+
+type EndUser {
+  clientUserId: String
+  createdAt: DateTime!
+  displayName: String
+  pictureUrl: String
+  updatedAt: DateTime
+  userId: String!
+}
+
+enum FileFolder {
+  FAILED
+  PENDING
+  PROCESSED
+}
+
+enum FileStatus {
+  DELETED
+  PENDING_SCAN
+  SCANNED
+  UPLOADING
+  VIRUS_DETECTED
+}
+
+enum FileType {
+  ARCHIVE
+  AUDIO
+  DOCUMENT
+  IMAGE
+  VIDEO
+}
+
+input FilterInput {
+  refineConditions: [FilterOptionInput!]
+  searchValue: String
+}
+
+input FilterOptionInput {
+  condition: String
+  searchItem: String
+  value: Any
+}
+
+enum FilterTargetType {
+  STORE
+  SURVEY
+}
+
+input FlexMessageInput {
+  altText: String!
+  contents: JSONObject!
+}
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+enum LogicalOperator {
+  AND
+  OR
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type MemberFeed {
+  columnAlias: String!
+  columnName: MemberFeedColumnType!
+  value: String
+}
+
+type MemberFeedColumn {
+  alias: String!
+  isEnabled: Boolean!
+  name: MemberFeedColumnType!
+}
+
+enum MemberFeedColumnType {
+  category_1
+  category_2
+  category_3
+  category_4
+  category_5
+  category_6
+  category_7
+  category_8
+  category_9
+  category_10
+  category_11
+  category_12
+  category_13
+  category_14
+  category_15
+  category_16
+  category_17
+  category_18
+  category_19
+  category_20
+  category_21
+  category_22
+  category_23
+  category_24
+  category_25
+  datetime_1
+  datetime_2
+  datetime_3
+  datetime_4
+  datetime_5
+  datetime_6
+  datetime_7
+  datetime_8
+  datetime_9
+  datetime_10
+  datetime_11
+  datetime_12
+  datetime_13
+  datetime_14
+  datetime_15
+  number_1
+  number_2
+  number_3
+  number_4
+  number_5
+  number_6
+  number_7
+  number_8
+  number_9
+  number_10
+  number_11
+  number_12
+  number_13
+  number_14
+  number_15
+}
+
+type Mutation {
+  addChatTag(chatTagInput: ChatTagInput!): Chat!
+  assignOperatorToChat(chatAssignInput: ChatAssignInput!): ChatActivity!
+  assignTeamToChat(chatTeamAssignInput: ChatTeamAssignInput!): ChatActivity!
+  changeChatStatus(chatStatusInput: ChatStatusInput!): ChatActivity!
+  confirmChatFileUpload(input: ConfirmChatFileUploadInput!): ConfirmChatFileUploadResponse!
+  confirmChatFileUploadForEndUser(input: ConfirmChatFileUploadEndUserInput!): ConfirmChatFileUploadResponse!
+  createAttribute(createAttributeInput: CreateAttributeInput!): Attribute!
+  createChatAssignFilter(createChatAssignFilterInput: CreateChatAssignFilterInput!): ChatAssignFilter!
+  createChatAssignRule(createChatAssignRuleInput: CreateChatAssignRuleInput!): ChatAssignRule!
+  createChatReplySetting(createChatReplySettingInput: CreateChatReplySettingInput!, inputOrganizationId: String): ChatReplySetting!
+  createNote(createNoteInput: CreateChatNoteInput!): ChatNote!
+  createOrganization(createOrganizationInput: CreateOrganizationInput!): Organization!
+  createTag(createTagInput: CreateTagInput!): Tag!
+  createTeam(createTeamInput: CreateTeamInput!, inputOrganizationId: String): Team!
+  createUser(createUserInput: CreateUserInput!): User!
+  deleteChatAssignFilter(id: String!): ChatAssignFilter!
+  deleteChatAssignRule(id: String!): ChatAssignRule!
+  deleteChatFile(input: DeleteChatFileInput!): DeleteChatFileResponse!
+  deleteChatFileForEndUser(input: DeleteChatFileEndUserInput!): DeleteChatFileResponse!
+  deleteChatMessage(deleteMessageInput: DeleteMessageInput!): Boolean!
+  disableAttribute(id: String!): Attribute!
+  disableTag(id: String!): Tag!
+  disableTeam(id: String!, inputOrganizationId: String): Team!
+  fillChatAttributeValue(createChatAttributeValueInput: CreateChatAttributeValueInput!): AttributeValue!
+  login(loginInput: LoginInput!): Auth!
+  loginToHypervisor(loginInput: LoginInput!): Auth!
+  removeChatTag(chatTagInput: ChatTagInput!): Chat!
+  removeNote(chatId: String!, id: String!): ChatNote!
+  removeTeamFromChat(chatTeamAssignInput: ChatTeamAssignInput!): ChatActivity!
+  removeUser(id: String!): Boolean!
+  requestPasswordReset(email: String!): Boolean!
+  requestReInvite(email: String!): Boolean!
+  resetPassword(resetPasswordInput: ResetPasswordInput!): User!
+  resetPasswordByToken(resetPasswordByTokenInput: ResetPasswordByTokenInput!): ResetPasswordByTokenResponse!
+  retrySendMessage(retryMessageInput: RetryMessageInput!): ChatMessage!
+  sendFileUploadedMessage(input: SendFileUploadedMessageInput!): ChatMessage!
+  sendMessage(chatMessageInput: ChatMessageInput!): ChatMessage!
+  sendMessageToLigla(chatId: String!, messageId: String!): ChatMessage!
+  sendUploadLink(input: ShareUploadLinkInput!): ChatMessage!
+  toggleAttributeStatus(id: String!): Attribute!
+  toggleOrganizationStatus(name: String!): Organization!
+  toggleTagStatus(id: String!): Tag!
+  toggleTeamStatus(id: String!, inputOrganizationId: String): Team!
+  toggleUserStatus(id: String!): User!
+  updateAttribute(updateAttributeInput: UpdateAttributeInput!): Attribute!
+  updateChatAssignFilter(updateChatAssignFilterInput: UpdateChatAssignFilterInput!): ChatAssignFilter!
+  updateChatAssignRule(updateChatAssignRuleInput: UpdateChatAssignRuleInput!): ChatAssignRule!
+  updateChatLatestRead(chatLatestReadInput: ChatLatestReadInput!): Chat!
+  updateChatReplySetting(updateChatReplySettingInput: UpdateChatReplySettingInput!): ChatReplySetting!
+  updateChatTags(updateChatTagsInput: UpdateChatTagsInput!): Chat!
+  updateDisplayName(updateDisplayNameInput: UpdateDisplayNameInput!): User!
+  updateMemberFeedSetting(updateMemberFeedSettingInput: UpdateMemberFeedSettingInput!): [MemberFeedColumn!]!
+  updateNote(updateNoteInput: UpdateChatNoteInput!): ChatNote!
+  updateOrganization(updateOrganizationInput: UpdateOrganizationInput!): Organization!
+  updateSenderName(updateSenderNameInput: UpdateSenderNameInput!): User!
+  updateSurveySetting(updateSurveySettingInput: UpdateSurveySettingInput!): [SurveyColumn!]!
+  updateTag(updateTagInput: UpdateTagInput!): Tag!
+  updateTeam(inputOrganizationId: String, updateTeamInput: UpdateTeamInput!): Team!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  uploadChatFile(input: UploadChatFileInput!): ChatFileUploadResponse!
+  uploadChatFileForEndUser(input: UploadChatFileEndUserInput!): ChatFileUploadResponse!
+}
+
+type Organization {
+  apiKey: String!
+  description: String
+  displayName: String!
+  fileUploadLiffId: String
+  id: String!
+  isActive: Boolean!
+  loginLiffId: String
+  maxOperator: Int!
+  name: String!
+  operatorCount: Int!
+  users: [User!]
+}
+
+type OrganizationsWithCount {
+  count: Int!
+  items: [Organization!]!
+}
+
+type Query {
+  adminOperators(
+    """The createdAt timestamp of the last item in the previous page."""
+    cursorCreatedAt: DateTime
+
+    """Cursor for extra date fields for sorting"""
+    cursorDateParam: DateTime
+    cursorDirection: CursorDirection! = BACKWARD
+
+    """The ID of the last item in the previous page."""
+    cursorId: String
+
+    """Cursor for integer fields for sorting (e.g., liglaStoreId)"""
+    cursorIntParam: Int
+    take: Int = 100
+  ): UserCursorPaginatedResponse!
+  allSelectableOperators(
+    """The createdAt timestamp of the last item in the previous page."""
+    cursorCreatedAt: DateTime
+
+    """Cursor for extra date fields for sorting"""
+    cursorDateParam: DateTime
+    cursorDirection: CursorDirection! = BACKWARD
+
+    """The ID of the last item in the previous page."""
+    cursorId: String
+
+    """Cursor for integer fields for sorting (e.g., liglaStoreId)"""
+    cursorIntParam: Int
+    inputOrganizationId: String
+    take: Int = 100
+  ): UserCursorPaginatedResponse!
+  attribute(id: String!): Attribute!
+  attributes(filter: FilterInput, skip: Int = 0, take: Int = 100): AttributesWithCount!
+  chatAssignFilter(id: String!): ChatAssignFilter!
+  chatAssignFiltersWithCount(filter: FilterInput, skip: Int = 0, take: Int = 100): ChatAssignFiltersWithCount!
+  chatAssignRule(id: String!): ChatAssignRule!
+  chatAssignRules(filter: FilterInput, skip: Int = 0, take: Int = 100): ChatAssignRulesWithCount!
+  chatCount: Int!
+  chatData(
+    chatId: String!
+
+    """The createdAt timestamp of the last item in the previous page."""
+    cursorCreatedAt: DateTime
+
+    """Cursor for extra date fields for sorting"""
+    cursorDateParam: DateTime
+    cursorDirection: CursorDirection! = BACKWARD
+
+    """The ID of the last item in the previous page."""
+    cursorId: String
+
+    """Cursor for integer fields for sorting (e.g., liglaStoreId)"""
+    cursorIntParam: Int
+    take: Int = 100
+  ): ChatItemCursorPaginatedResponse!
+  chatFileDownloadUrlForEndUser(input: DownloadChatFileEndUserInput!): ChatFileDownloadUrlResponse!
+  chatFiles(
+    chatId: String!
+
+    """The createdAt timestamp of the last item in the previous page."""
+    cursorCreatedAt: DateTime
+
+    """Cursor for extra date fields for sorting"""
+    cursorDateParam: DateTime
+    cursorDirection: CursorDirection! = BACKWARD
+
+    """The ID of the last item in the previous page."""
+    cursorId: String
+
+    """Cursor for integer fields for sorting (e.g., liglaStoreId)"""
+    cursorIntParam: Int
+    endUserId: String!
+    take: Int = 100
+  ): ChatFileListResponse!
+  chatFilesForEndUser(
+    """The createdAt timestamp of the last item in the previous page."""
+    cursorCreatedAt: DateTime
+
+    """Cursor for extra date fields for sorting"""
+    cursorDateParam: DateTime
+    cursorDirection: CursorDirection! = BACKWARD
+
+    """The ID of the last item in the previous page."""
+    cursorId: String
+
+    """Cursor for integer fields for sorting (e.g., liglaStoreId)"""
+    cursorIntParam: Int
+    take: Int = 100
+  ): ChatFileListResponse!
+  chatHistory(id: String!): Chat
+  chatReplySetting(inputOrganizationId: String): ChatReplySetting
+  chats(
+    """The createdAt timestamp of the last item in the previous page."""
+    cursorCreatedAt: DateTime
+
+    """Cursor for extra date fields for sorting"""
+    cursorDateParam: DateTime
+    cursorDirection: CursorDirection! = BACKWARD
+
+    """The ID of the last item in the previous page."""
+    cursorId: String
+
+    """Cursor for integer fields for sorting (e.g., liglaStoreId)"""
+    cursorIntParam: Int
+    filter: ChatFilterInput
+    take: Int = 100
+  ): ChatCursorPaginatedResponse!
+  checkUserExists(email: String!): Boolean!
+  cursorPaginatedTags(
+    """The createdAt timestamp of the last item in the previous page."""
+    cursorCreatedAt: DateTime
+
+    """Cursor for extra date fields for sorting"""
+    cursorDateParam: DateTime
+    cursorDirection: CursorDirection! = BACKWARD
+
+    """The ID of the last item in the previous page."""
+    cursorId: String
+
+    """Cursor for integer fields for sorting (e.g., liglaStoreId)"""
+    cursorIntParam: Int
+    take: Int = 100
+  ): TagCursorPaginatedResponse!
+  managers(
+    """The createdAt timestamp of the last item in the previous page."""
+    cursorCreatedAt: DateTime
+
+    """Cursor for extra date fields for sorting"""
+    cursorDateParam: DateTime
+    cursorDirection: CursorDirection! = BACKWARD
+
+    """The ID of the last item in the previous page."""
+    cursorId: String
+
+    """Cursor for integer fields for sorting (e.g., liglaStoreId)"""
+    cursorIntParam: Int
+    inputOrganizationId: String
+    take: Int = 100
+  ): UserCursorPaginatedResponse!
+  maxOperatorCount: Int!
+  me: User!
+  memberFeedColumns: [MemberFeedColumn!]!
+  memberFeeds(clientUserId: String): [MemberFeed!]
+  notes(chatId: String!): [ChatNote!]!
+  operatorCount: Int!
+  organization(name: String!): Organization!
+  organizations(filter: FilterInput, skip: Int = 0, take: Int = 100): OrganizationsWithCount!
+  selectableChatAssignFilters: [ChatAssignFilterItem!]!
+  selectableTeams: [SelectableTeam!]!
+  selectableTeamsForChatFilter: [SelectableTeam!]!
+  store(id: String!): Store!
+  stores(filter: FilterInput, inputOrganizationId: String, skip: Int = 0, take: Int = 100): StoresWithCount!
+  storesCursor(
+    """The createdAt timestamp of the last item in the previous page."""
+    cursorCreatedAt: DateTime
+
+    """Cursor for extra date fields for sorting"""
+    cursorDateParam: DateTime
+    cursorDirection: CursorDirection! = BACKWARD
+
+    """The ID of the last item in the previous page."""
+    cursorId: String
+
+    """Cursor for integer fields for sorting (e.g., liglaStoreId)"""
+    cursorIntParam: Int
+    inputOrganizationId: String
+    take: Int = 100
+  ): StoreCursorPaginatedResponse!
+  surveyColumns: [SurveyColumn!]!
+  surveys(chatId: String!): [Survey!]
+  tag(id: String!): Tag!
+  tags(filter: FilterInput, skip: Int = 0, take: Int = 100): TagsWithCount!
+  team(id: String!, inputOrganizationId: String): Team!
+  teams(filter: FilterInput, inputOrganizationId: String, skip: Int = 0, take: Int = 100): TeamsWithCount!
+  teamsInChat(chatId: String!): [Team!]!
+  unassignedChatCount: Int!
+  user(id: String!): User!
+  users(filter: FilterInput, skip: Int = 0, take: Int = 100): UsersWithCount!
+  verifyPasswordResetToken(token: String!): Boolean!
+}
+
+input ResetPasswordByTokenInput {
+  newPassword: String!
+  token: String!
+}
+
+type ResetPasswordByTokenResponse {
+  success: Boolean!
+  warning: String
+}
+
+input ResetPasswordInput {
+  currentPassword: String!
+  newPassword: String!
+}
+
+input RetryMessageInput {
+  chatId: String!
+  messageId: String!
+}
+
+type SelectOption {
+  id: String!
+  label: String
+  value: String!
+}
+
+input SelectOptionInput {
+  id: String
+  label: String
+  value: String!
+}
+
+type SelectableTeam {
+  id: String!
+  isDefault: Boolean!
+  name: String!
+}
+
+input SendFileUploadedMessageInput {
+  altText: String
+  chatId: String!
+  fileName: String!
+}
+
+type Sender {
+  displayName: String
+  id: String!
+  pictureUrl: String
+  senderName: String
+}
+
+"""Defines whether the sender is an end-user or operator"""
+enum SenderType {
+  END_USER
+  OPERATOR
+  SYSTEM
+}
+
+input ShareUploadLinkInput {
+  chatId: String!
+}
+
+type Store {
+  areaName: String
+  createdAt: DateTime!
+  endsAt: DateTime
+  id: String!
+  isActive: Boolean!
+  liglaStoreId: Float
+  name: String!
+  note: String
+  startsAt: DateTime
+  typeName: String
+}
+
+type StoreCursorPaginatedResponse {
+  hasMore: Boolean!
+  items: [Store!]!
+  nextCursorCreatedAt: DateTime
+  nextCursorDateParam: DateTime
+  nextCursorId: String
+  nextCursorIntParam: Int
+}
+
+type StoresWithCount {
+  count: Int!
+  items: [Store!]!
+}
+
+type Survey {
+  columnAlias: String!
+  columnName: SurveyColumnType!
+  value: String
+}
+
+type SurveyColumn {
+  alias: String!
+  isEnabled: Boolean!
+  name: SurveyColumnType!
+}
+
+enum SurveyColumnType {
+  category_1
+  category_2
+  category_3
+  category_4
+  category_5
+  category_6
+  category_7
+  category_8
+  category_9
+  category_10
+  category_11
+  category_12
+  category_13
+  category_14
+  category_15
+  category_16
+  category_17
+  category_18
+  category_19
+  category_20
+  category_21
+  category_22
+  category_23
+  category_24
+  category_25
+  datetime_1
+  datetime_2
+  datetime_3
+  datetime_4
+  datetime_5
+  datetime_6
+  datetime_7
+  datetime_8
+  datetime_9
+  datetime_10
+  datetime_11
+  datetime_12
+  datetime_13
+  datetime_14
+  datetime_15
+  number_1
+  number_2
+  number_3
+  number_4
+  number_5
+  number_6
+  number_7
+  number_8
+  number_9
+  number_10
+  number_11
+  number_12
+  number_13
+  number_14
+  number_15
+}
+
+enum SystemUserType {
+  HYPERVISOR
+  USER
+}
+
+type Tag {
+  createdAt: DateTime!
+  id: String!
+  isActive: Boolean!
+  name: String!
+}
+
+type TagCursorPaginatedResponse {
+  hasMore: Boolean!
+  items: [Tag!]!
+  nextCursorCreatedAt: DateTime
+  nextCursorDateParam: DateTime
+  nextCursorId: String
+  nextCursorIntParam: Int
+}
+
+type TagsWithCount {
+  count: Int!
+  items: [Tag!]!
+}
+
+type Team {
+  createdAt: DateTime!
+  id: String!
+  isActive: Boolean!
+  isDefault: Boolean!
+  managers: [User!]!
+  name: String!
+  operators: [User!]!
+  stores: [Store!]!
+  teamSetting: TeamSetting
+}
+
+type TeamChatSetting {
+  id: String!
+  teamSettingId: String!
+  viewAllChatsEnabled: Boolean!
+}
+
+input TeamChatSettingInput {
+  viewAllChatsEnabled: Boolean
+}
+
+type TeamSetting {
+  id: String!
+  teamChatSetting: TeamChatSetting
+  teamId: String!
+}
+
+input TeamSettingInput {
+  teamChatSetting: TeamChatSettingInput
+}
+
+type TeamsWithCount {
+  count: Int!
+  items: [Team!]!
+}
+
+input UpdateAttributeInput {
+  id: String!
+  isActive: Boolean!
+  name: String!
+  selectOptions: [SelectOptionInput!]
+  type: AttributeType! = string
+}
+
+input UpdateChatAssignFilterInput {
+  id: String!
+  isActive: Boolean
+  name: String
+  note: String
+  rootConditionGroup: CreateConditionGroupInput
+  targetTable: FilterTargetType
+}
+
+input UpdateChatAssignRuleInput {
+  id: String!
+  isActive: Boolean
+  name: String
+  note: String
+  rootFilterGroup: CreateFilterGroupInput
+  targetTeamIds: [String!]
+}
+
+input UpdateChatNoteInput {
+  chatId: String!
+  id: String!
+  noteValue: String!
+}
+
+input UpdateChatReplySettingInput {
+  id: String!
+  isActive: Boolean!
+  messages: [CreateChatReplySettingMessageInput!]!
+  schedules: [CreateChatReplyScheduleInput!]!
+}
+
+input UpdateChatTagsInput {
+  chatId: String!
+  tagIds: [String!]!
+}
+
+input UpdateDisplayNameInput {
+  displayName: String!
+}
+
+input UpdateMemberFeedSettingInput {
+  enabledColumns: [MemberFeedColumnType!]!
+}
+
+input UpdateOrganizationInput {
+  apiKey: String
+  description: String
+  displayName: String
+  emails: [String!]
+  fileUploadLiffId: String
+  isActive: Boolean
+  loginLiffId: String
+  maxOperator: Int
+  name: String
+}
+
+input UpdateSenderNameInput {
+  senderName: String!
+}
+
+input UpdateSurveySettingInput {
+  enabledColumns: [SurveyColumnType!]!
+}
+
+input UpdateTagInput {
+  id: String!
+  isActive: Boolean!
+  name: String!
+}
+
+input UpdateTeamInput {
+  id: String!
+  isActive: Boolean
+  managerIds: [String!] = []
+  name: String
+  operatorIds: [String!] = []
+  storeIds: [String!] = []
+  teamSetting: TeamSettingInput
+}
+
+input UpdateUserInput {
+  displayName: String!
+  id: String!
+  roleType: UserRoleType!
+  senderName: String
+  status: String
+}
+
+input UploadChatFileEndUserInput {
+  fileName: String!
+  fileSize: BigInt!
+  fileType: FileType!
+  mimeType: String!
+}
+
+input UploadChatFileInput {
+  chatId: String!
+  fileName: String!
+  fileSize: BigInt!
+  fileType: FileType!
+  mimeType: String!
+}
+
+type User {
+  createdAt: DateTime!
+  displayName: String!
+  email: String!
+  id: String!
+  organization: BaseOrganization
+  pictureUrl: String
+  qrUrl: String
+  roleType: String!
+  senderName: String
+  status: String!
+  systemUserType: SystemUserType!
+  teams: [BaseTeam!]
+}
+
+type UserCursorPaginatedResponse {
+  hasMore: Boolean!
+  items: [User!]!
+  nextCursorCreatedAt: DateTime
+  nextCursorDateParam: DateTime
+  nextCursorId: String
+  nextCursorIntParam: Int
+}
+
+enum UserRoleType {
+  ADMIN
+  ADMIN_OPERATOR
+  MANAGER
+  MANAGER_OPERATOR
+  OPERATOR
+}
+
+type UsersWithCount {
+  count: Int!
+  items: [User!]!
+}
+
+enum ValueType {
+  ARRAY
+  BOOLEAN
+  DATETIME
+  NUMBER
+  STRING
+}

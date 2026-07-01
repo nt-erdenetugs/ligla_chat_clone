@@ -1,0 +1,23 @@
+runtime: nodejs22
+service: chat-front
+
+handlers:
+  - url: /chat/(.*\..+)$
+    static_files: build/\1
+    upload: build/(.*\..+)$
+    secure: always
+  - url: /chat/.*
+    static_files: build/index.html
+    upload: build/index.html
+    secure: always
+  - url: /chat
+    static_files: build/index.html
+    upload: build/index.html
+    secure: always
+
+env_variables:
+  PORT: '8001'
+  NODE_ENV: 'production'
+  VITE_BACKEND_URL: 'https://staging.autoline.link/chat'
+  VITE_APP_BASE_PATH: '/chat'
+  VITE_VAPID_PUBLIC_KEY: 'BNalZi2EWWhBhH5EEW5yiKbTTY7btkm-z8x0zZui5sH4SRcR25XWUHpIq-IO7ox8W7G8QmQS4D6fAGIwLxZxT4M'

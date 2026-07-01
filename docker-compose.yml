@@ -1,0 +1,215 @@
+services:
+  backend-core:
+    image: ligla_core:local
+    build:
+      context: .
+      dockerfile: backend-core/Dockerfile
+    command: uvicorn app.main:app --host 0.0.0.0 --reload
+    volumes:
+      - ./backend-core/:/code/
+    env_file:
+      - ./secret/.env
+    ports:
+      - 8000:8000
+    depends_on:
+      postgres:
+        condition: service_started
+      pubsub-emulator:
+        condition: service_healthy
+    networks:
+      - network_back
+    environment:
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - PUBSUB_EMULATOR_HOST=${GCP_PUBSUB_EMULATOR_HOST}
+      - GCS_EMULATOR_HOST=${GCS_EMULATOR_HOST}
+      - STORAGE_EMULATOR_INSECURE=true
+
+  backend-bff:
+    image: ligla_bff:local
+    build:
+      context: .
+      dockerfile: backend-bff/Dockerfile
+    command: npm run start:dev
+    volumes:
+      - ./backend-bff/:/code
+      - bff_node_modules:/code/node_modules
+      - ./secret/credentials.json:/tmp/keys/credentials.json:ro
+      # - schema:/code/src/schema.gql
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+      - GCS_EMULATOR_HOST=${GCS_EMULATOR_HOST}
+      - PUBSUB_EMULATOR_HOST=${GCP_PUBSUB_EMULATOR_HOST}
+    env_file:
+      - ./secret/.env
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+      - backend-core
+    networks:
+      - network_back
+
+  frontend:
+    image: ligla_front:local
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    command: npm run start:dev
+    volumes:
+      - ./frontend/:/code
+      - front_node_modules:/code/node_modules
+      - ./backend-bff/src/schema.gql:/code/src/schema.gql
+    env_file:
+      - ./secret/.env
+    ports:
+      - 8001:8001
+    depends_on:
+      - backend-bff
+    networks:
+      - network_back
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    command: ["postgres", "-c", "shared_preload_libraries=pg_bigm"]
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_HOST=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    networks:
+      - network_back
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+    env_file:
+      - ./secret/.env
+
+  pubsub-emulator:
+    platform: linux/amd64
+    image: google/cloud-sdk:emulators
+    command: gcloud beta emulators pubsub start --project ${GCP_PROJECT_ID} --host-port 0.0.0.0:8085
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8085 || exit 1"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    ports:
+      - "8085:8085"
+    networks:
+      - network_back
+    environment:
+      - CLOUDSDK_CORE_PROJECT=${GCP_PROJECT_ID}
+      - GCP_PUBSUB_EMULATOR_HOST=${GCP_PUBSUB_EMULATOR_HOST}
+      - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+  storage-emulator:
+    image: fsouza/fake-gcs-server:latest
+    container_name: storage-emulator
+    command:
+      - "-scheme"
+      - "http"
+      - "-external-url"
+      - "http://storage-emulator:4443"
+      - "-public-host"
+      - "localhost:4443"
+    ports:
+      - "4443:4443"
+    volumes:
+      - storage-data:/data
+    networks:
+      - network_back
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 4443 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  storage-init:
+    image: curlimages/curl:7.85.0
+    container_name: storage-init
+    depends_on:
+      storage-emulator:
+        condition: service_healthy
+    env_file:
+      - secret/.env
+    entrypoint:
+      - sh
+      - -euxc
+      - |
+        curl -v -X POST \
+        -H "Content-Type: application/json" \
+        "http://storage-emulator:4443/storage/v1/b?project=$GCP_PROJECT_ID&predefinedAcl=publicRead&predefinedDefaultObjectAcl=publicRead" \
+        -d "{\"name\":\"$GCP_STORAGE_CHAT_PUBLIC_DATA_BUCKET\"}"
+    restart: "no"
+    networks:
+      - network_back
+
+  cloud-function:
+    image: cloud-function:latest
+    build:
+      context: functions/datasync
+      dockerfile: Dockerfile
+    volumes:
+      - ./functions/datasync:/app
+      - ./secret/credentials.json:/tmp/keys/credentials.json:ro
+    env_file:
+      - ./secret/.env
+    ports:
+      - 9090:9090
+    depends_on:
+      - storage-emulator
+      - postgres
+    networks:
+      - network_back
+    environment:
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      # check cloud function
+      - GCS_EMULATOR_HOST=${GCS_EMULATOR_HOST}
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+
+  chat-member-feed-sync:
+    image: chat-member-feed-sync:local
+    build:
+      context: worker/member-feed-data-sync
+      dockerfile: Dockerfile
+    env_file:
+      - ./secret/.env
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./worker/member-feed-data-sync/app:/code/app
+    depends_on:
+      - postgres
+      - storage-emulator
+    networks:
+      - network_back
+    environment:
+      - GCS_EMULATOR_HOST=${GCS_EMULATOR_HOST}
+      - GCP_STORAGE_CHAT_DATA_BUCKET=ligla-chat-data
+      - DB_HOST=postgres
+      - DOCKER_CONTAINER=true
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'python -c "import urllib.request; urllib.request.urlopen(''http://localhost:8080/health'')" || exit 1',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  db_data:
+  bff_node_modules:
+  front_node_modules:
+  schema:
+  storage-data:
+
+networks:
+  network_back:

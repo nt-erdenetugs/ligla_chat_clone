@@ -1,0 +1,183 @@
+{
+  "app": {
+    "title": "chat system"
+  },
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "loggingIn": "Logging in...",
+  "loading": "Loading...",
+  "logout": "Logout",
+  "forgotPassword": "Forgot password?",
+  "resetPassword": "Reset Password",
+  "resetSuccess": "Your password has been successfully updated. You can now log in with your new password.",
+  "initialLogin": "Initial login",
+  "confirmation": "Confirmation",
+  "enterInput": "Enter {{target}}",
+  "systemAdministratorPortal": "System administrator portal",
+  "currentEmailAddress": "Email address",
+  "currentAccountName": "Account name",
+  "currentSenderName": "Sender name",
+  "notSpecified": "Not specified",
+  "senderNameHint": "This is the name that will be shown to LINE end users when sending messages.",
+  "currentPassword": "Password",
+  "oldPassword": "Current password",
+  "enableNotifications": "Enable notifications",
+  "notificationsPerDevice": "Notifications should be set individually for each of your devices.",
+  "notificationsIOSnotPWADevice": "This feature is not available on this browser. Add to Homescreen.",
+  "newPassword": "New password",
+  "newPasswordForConfirmation": "New password (for confirmation)",
+  "pleaseEnter": "Please enter",
+  "noOptions": "No options",
+  "favorites": "Favorites",
+  "survey": "Survey",
+  "store": "Store",
+  "note": "Note",
+  "forgotYourPassword": {
+    "title": "Forgot your password?",
+    "note": "Please enter the email address associated with your account. We'll send you a link to reset your password.",
+    "sendResetLink": "We will send you a link to reset your password. Please check your email.",
+    "returnToLogin": "Return to login",
+    "loginAgain": "Log in again"
+  },
+  "info": {
+    "sureToLogout": "Are you sure you want to logout?",
+    "sureToDelete": "Are you sure you want to delete?",
+    "sureToDisable": "Are you sure you want to disable?",
+    "sureToRestore": "Are you sure you want to restore?",
+    "sureToCancelEdit": "The contents being edited will be destroyed. Are you sure?",
+    "sureToChangeOperator": "Are you sure you want to change the operator?",
+    "sureToChangeTeam": "Are you sure you want to change team assignment?",
+    "sureToDiscardMsg": "The message will be discarded. Are you sure?",
+    "sureToDeleteMsg": "The message will be deleted. Are you sure?",
+    "sureToDiscardUpload": "The file upload will be discarded. Are you sure?"
+  },
+  "sidebar": {
+    "inbox": "Inbox",
+    "users": "Operators",
+    "teams": "Teams",
+    "stores": "Stores",
+    "organizations": "Organizations",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "chat": "Chat",
+    "columnSettings": "Display Items Settings",
+    "replySettings": "Auto Reply",
+    "chatAssignRules": "Assignment Rules",
+    "management": "Management",
+    "database": "Database",
+    "chatSettings": "Chat Settings",
+    "logout": "Logout",
+    "accountSettings": "Account Settings",
+    "language": "Language"
+  },
+  "actions": {
+    "ok": "OK",
+    "moreInfo": "More info",
+    "save": "Save",
+    "saving": "Saving",
+    "new": "Create New",
+    "cancel": "Cancel",
+    "send": "Send",
+    "delete": "Delete",
+    "disable": "Disable",
+    "edit": "Edit",
+    "add": "Add",
+    "addMore": "Add more",
+    "close": "Close",
+    "invite": "Invite",
+    "restore": "Restore",
+    "confirm": "Confirm",
+    "keep": "Keep",
+    "start": "Start",
+    "end": "End",
+    "tryAgain": "Try again",
+    "downloadOperatorsQR": "download operators QR",
+    "upload": "UPLOAD",
+    "uploading": "UPLOADING..."
+  },
+  "upload": {
+    "fileDetail": "Current file : {{name}} - {{size}} bytes",
+    "supportedFileType": "Supported file format: *.{{ext}}",
+    "maxSize": "Maximum file size: {{size}}",
+    "aspectRatio": "Required aspect ratio: 1:1"
+  },
+  "datatableFilter": {
+    "refine": "REFINE",
+    "search": "SEARCH",
+    "reset": "RESET",
+    "apply": "APPLY",
+    "addFilter": "ADD FILTER",
+    "searchItem": "Search Item",
+    "filters": "Filters",
+    "value": "Value",
+    "searchBy": "Search",
+    "searchAllowed": "Search is allowed in the following columns:",
+    "none": "None",
+    "condition": "Condition",
+    "filterConditions": {
+      "equals": "equals",
+      "notEquals": "not equals",
+      "contains": "contains",
+      "doesNotContain": "does not contain",
+      "startsWith": "starts with",
+      "endsWith": "ends with",
+      "isPresent": "is present",
+      "is blank": "is not present"
+    }
+  },
+  "user": {
+    "personalInfo": "Personal Info",
+    "qrCode": "QR Code",
+    "shareUrl": "Share this link.",
+    "copied": "Link copied successfully.",
+    "copyFailed": "Unable to copy the link. Please try again.",
+    "notFoundQrUrl": "Failed to generate a QR link. Please contact your administrator!",
+    "notificationsEnabled": "Notifications enabled",
+    "notificationsDisabled": "Notifications disabled",
+    "notificationsError": "Failed to enable/disable notifications. Please try again."
+  },
+  "tooltip": {
+    "downloadOperatorsQRButton": "QR codes of active operators currently displayed on the page will be downloaded."
+  },
+  "resetPasswordErrors": {
+    "missingTokenTitle": "Missing Reset Link",
+    "missingTokenDescription": "No reset token provided. Please use the link from your email or request a new password reset link.",
+    "invalidTokenTitle": "Try resetting your password again",
+    "invalidTokenDescription": "Your request to reset your password has expired or the link has already been used."
+  },
+  "initialLoginErrors": {
+    "missingTokenTitle": "Missing Activation Link",
+    "missingTokenDescription": "No activation token provided. Please use the complete link from your invitation email.",
+    "invalidTokenTitle": "Account Activation Failed",
+    "invalidTokenDescription": "Your account activation link has expired or has already been used. Please contact your administrator for a new invitation."
+  },
+  "logicalOperator": {
+    "and": "AND",
+    "or": "OR"
+  },
+  "maintenance": {
+    "title": "System maintenance in progress",
+    "description": "We are performing scheduled maintenance.\nWe apologize for the inconvenience and appreciate your patience."
+  },
+  "errorFallback": {
+    "401": {
+      "title": "User authentication failed",
+      "description": "You need to log in.\nPlease log in and try again."
+    },
+    "403": {
+      "title": "No access authority",
+      "description": "Access to the specified page is prohibited."
+    },
+    "404": {
+      "title": "Not found",
+      "description": "The specified page was not found."
+    },
+    "500": {
+      "title": "A problem occurred",
+      "description": "The service is temporarily unavailable.\nPlease wait a while and try again."
+    },
+    "returnToHomePage": "Return to home page"
+  },
+  "swNeedsRefresh": "There is an update available, please refresh"
+}

@@ -1,0 +1,17 @@
+fragment surveyColumnFragment on SurveyColumn {
+  name
+  alias
+  isEnabled
+}
+
+query surveyColumns {
+  surveyColumns {
+    ...surveyColumnFragment
+  }
+}
+
+mutation updateSurveySetting($updateSurveySettingInput: UpdateSurveySettingInput!) {
+  updateSurveySetting(updateSurveySettingInput: $updateSurveySettingInput) {
+    ...surveyColumnFragment
+  }
+}

@@ -1,0 +1,334 @@
+fragment endUserFragment on EndUser {
+  userId
+  clientUserId
+  displayName
+  pictureUrl
+  createdAt
+  updatedAt
+}
+
+fragment chatTeamAssignmentFragment on ChatTeamAssignment {
+  id
+  chatId
+  createdAt
+  teamId
+  team {
+    ...teamBaseFragment
+  }
+}
+
+fragment chatMessageFragment on ChatMessage {
+  id
+  chatId
+  content
+  createdAt
+  previewImageUrl
+  contentUrl
+  senderId
+  sender {
+    ...senderFragment
+  }
+  senderType
+  type
+  isDelivered
+}
+
+fragment chatActivityFragment on ChatActivity {
+  id
+  chatId
+  activityType
+  actorType
+  actorId
+  actorUserName
+  oldStatus
+  newStatus
+  oldUserId
+  newUserId
+  oldUserName
+  newUserName
+  changedTeamId
+  changedTeamName
+  teamAssignAction
+  createdAt
+}
+
+fragment chatItemFragment on ChatItem {
+  id
+  activity {
+    ...chatActivityFragment
+  }
+  message {
+    ...chatMessageFragment
+  }
+  createdAt
+  itemType
+}
+
+fragment chatTagFragment on ChatTag {
+  id
+  chatId
+  tagId
+  createdAt
+  tag {
+    ...tagFragment
+  }
+}
+
+fragment chatNoteFragment on ChatNote {
+  id
+  chatId
+  noteValue
+  createdAt
+  updatedAt
+  user {
+    id
+    displayName
+  }
+}
+
+fragment chatFileListItemFragment on ChatFile {
+  id
+  chatId
+  fileName
+  originalFileName
+  fileSize
+  mimeType
+  status
+  createdAt
+  uploaderOperatorId
+  uploaderEndUserId
+  uploaderOperatorName
+  uploaderEndUserName
+}
+
+fragment chatsFragment on Chat {
+  id
+  assignedUserId
+  assignedUser {
+    ...userFragment
+  }
+  chatTeamAssignment {
+    ...chatTeamAssignmentFragment
+  }
+  chatMessages {
+    ...chatMessageFragment
+  }
+  chatUnreadCount
+  endUserId
+  endUser {
+    ...endUserFragment
+  }
+  chatAttributeValues {
+    ...chatAttributeValueFragment
+  }
+  chatTags {
+    ...chatTagFragment
+  }
+  chatStatus
+  latestMessageTimestamp
+  latestReadTimestamp
+  sessionActive
+  isUserBlocked
+  createdAt
+}
+
+fragment chatFragment on Chat {
+  id
+  assignedUserId
+  assignedUser {
+    ...userFragment
+  }
+  chatTeamAssignment {
+    ...chatTeamAssignmentFragment
+  }
+  endUserId
+  endUser {
+    ...endUserFragment
+  }
+  chatAttributeValues {
+    ...chatAttributeValueFragment
+  }
+  chatTags {
+    ...chatTagFragment
+  }
+  chatStatus
+  latestMessageTimestamp
+  latestReadTimestamp
+  sessionActive
+  isUserBlocked
+  createdAt
+}
+
+query chats($filter: ChatFilterInput, $cursorId: String, $cursorCreatedAt: DateTime, $cursorDateParam: DateTime, $take: Int) {
+  chats(filter: $filter, cursorId: $cursorId, cursorCreatedAt: $cursorCreatedAt, cursorDateParam: $cursorDateParam, take: $take) {
+    items {
+      ...chatsFragment
+    }
+    nextCursorId
+    nextCursorCreatedAt
+    nextCursorDateParam
+    hasMore
+  }
+}
+
+query chatHistory($id: String!) {
+  chatHistory(id: $id) {
+    ...chatFragment
+  }
+}
+
+query chatData(
+  $chatId: String!
+  $take: Int
+  $cursorId: String
+  $cursorCreatedAt: DateTime
+  $cursorDirection: CursorDirection
+) {
+  chatData(
+    chatId: $chatId
+    take: $take
+    cursorId: $cursorId
+    cursorCreatedAt: $cursorCreatedAt
+    cursorDirection: $cursorDirection
+  ) {
+    items {
+      ...chatItemFragment
+    }
+    nextCursorId
+    nextCursorCreatedAt
+    hasMore
+  }
+}
+
+query chatCount {
+  chatCount
+}
+
+query unassignedChatCount {
+  unassignedChatCount
+}
+
+mutation changeChatStatus($chatStatusInput: ChatStatusInput!) {
+  changeChatStatus(chatStatusInput: $chatStatusInput) {
+    ...chatActivityFragment
+  }
+}
+
+mutation sendMessage($chatMessageInput: ChatMessageInput!) {
+  sendMessage(chatMessageInput: $chatMessageInput) {
+    ...chatMessageFragment
+  }
+}
+
+mutation sendUploadLink($input: ShareUploadLinkInput!) {
+  sendUploadLink(input: $input) {
+    ...chatMessageFragment
+  }
+}
+
+mutation sendFileUploadedMessage($input: SendFileUploadedMessageInput!) {
+  sendFileUploadedMessage(input: $input) {
+    ...chatMessageFragment
+  }
+}
+
+mutation sendMessageToLigla(
+  $chatId: String!
+  $messageId: String!
+) {
+  sendMessageToLigla(
+    chatId: $chatId
+    messageId: $messageId
+  ) {
+    isDelivered
+  }
+}
+
+mutation retrySendMessage($retryMessageInput: RetryMessageInput!) {
+  retrySendMessage(retryMessageInput: $retryMessageInput) {
+    ...chatMessageFragment
+  }
+}
+
+mutation deleteChatMessage($deleteMessageInput: DeleteMessageInput!) {
+  deleteChatMessage(deleteMessageInput: $deleteMessageInput)
+}
+
+mutation assignOperatorToChat($chatAssignInput: ChatAssignInput!) {
+  assignOperatorToChat(chatAssignInput: $chatAssignInput) {
+    ...chatActivityFragment
+  }
+}
+
+mutation assignTeamToChat($chatTeamAssignInput: ChatTeamAssignInput!) {
+  assignTeamToChat(chatTeamAssignInput: $chatTeamAssignInput) {
+    ...chatActivityFragment
+  }
+}
+
+mutation removeTeamFromChat($chatTeamAssignInput: ChatTeamAssignInput!) {
+  removeTeamFromChat(chatTeamAssignInput: $chatTeamAssignInput) {
+    ...chatActivityFragment
+  }
+}
+
+mutation removeChatTag($chatTagInput: ChatTagInput!) {
+  removeChatTag(chatTagInput: $chatTagInput) {
+    ...chatFragment
+  }
+}
+
+mutation updateChatTags($updateChatTagsInput: UpdateChatTagsInput!) {
+  updateChatTags(updateChatTagsInput: $updateChatTagsInput) {
+    ...chatFragment
+  }
+}
+
+mutation updateChatLatestRead($chatLatestReadInput: ChatLatestReadInput!) {
+  updateChatLatestRead(chatLatestReadInput: $chatLatestReadInput) {
+    ...chatFragment
+  }
+}
+
+mutation UploadChatFile($input: UploadChatFileInput!) {
+  uploadChatFile(input: $input) {
+    signedUrl
+    chatFile {
+      id
+    }
+  }
+}
+
+mutation ConfirmChatFileUpload($input: ConfirmChatFileUploadInput!) {
+  confirmChatFileUpload(input: $input) {
+    success
+    chatFile {
+      id
+      fileName
+    }
+  }
+}
+
+mutation DeleteChatFile($input: DeleteChatFileInput!) {
+  deleteChatFile(input: $input) {
+    success
+  }
+}
+
+query chatFiles($chatId: String!, $endUserId: String!, $take: Int, $cursorId: String, $cursorCreatedAt: DateTime) {
+  chatFiles(
+    chatId: $chatId
+    endUserId: $endUserId
+    take: $take
+    cursorId: $cursorId
+    cursorCreatedAt: $cursorCreatedAt
+  ) {
+    items {
+      ...chatFileListItemFragment
+    }
+    nextCursorId
+    nextCursorCreatedAt
+    hasMore
+    totalCount
+  }
+}

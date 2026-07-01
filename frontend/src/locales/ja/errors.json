@@ -1,0 +1,85 @@
+{
+  "commonError": "エラーが発生しました",
+  "doesNotExist": "{{item}}が存在しません",
+  "featureNotAvailable": "この機能は利用できません",
+  "searchNotFound": "検索結果が見つかりません",
+  "memberFeedNotFound": "メンバーフィードが見つかりません",
+  "surveyNotFound": "アンケートが見つかりません",
+  "useDifferentEmail": "別のメールアドレスを使用してください",
+  "userAlreadyExists": "このユーザーは既に存在します",
+  "userHasBothOperatorAndManagerRoles": "ユーザーにはオペレーターとマネージャーの両方の役割があります",
+  "emailAlreadyExists": "このメールアドレスはすでにシステムに追加されています",
+  "emailAlreadyExistsInList": "このメールアドレスはすでに管理者リストに追加されています",
+  "emailTooLong": "メールアドレスが長すぎます",
+  "emailValid": "有効なメールアドレスを入力してください",
+  "enterEmail": "メールアドレスを入力してください",
+  "enterName": "名前を入力してください",
+  "enterPassword": "パスワードを入力してください",
+  "enterValue": "値を入力してください",
+  "valueTooLong": "値が文字数制限を超えています",
+  "fieldIsRequired": "このフィールドは必須です",
+  "fieldMustBeNumber": "このフィールドは数字である必要があります",
+  "nameMustContain": "名前は単一のスペースで区切られた単語を含む必要があります",
+  "nameTooLong": "文字数制限",
+  "nameAlreadyExists": "この名前はすでに存在します",
+  "numberMax": "数値は以下である必要があります: ",
+  "numberMin": "数値は以上である必要があります: ",
+  "passwordAtLeast": "パスワードは少なくとも6文字である必要があります",
+  "passwordContainLowercase": "パスワードには少なくとも1つの小文字を含める必要があります",
+  "passwordContainNumber": "パスワードには少なくとも1つの数字を含める必要があります",
+  "passwordContainSpecial": "パスワードには少なくとも1つの特殊文字を含める必要があります",
+  "passwordContainUppercase": "パスワードには少なくとも1つの大文字を含める必要があります",
+  "passwordTooLong": "パスワードが長すぎます",
+  "passwordNotMatch": "パスワードが一致しません",
+  "passwordSameAsOld": "パスワードが現在のものと同じです。",
+  "selectRole": "役割を選択してください",
+  "useUnderScore": "スペースの代わりにアンダースコアを使用してください",
+  "failedToSave": "保存に失敗しました",
+  "failedToFetchRefreshAgain": "取得に失敗しました。もう一度リフレッシュしてください。",
+  "maxCharacterLimit": "{{limit}}文字以内で入力してください",
+  "userNameMaxCharacterLimit": "アカウント名は{{limit}}文字以内で入力してください。",
+  "noteMaxCharacterLimit": "メモの文字数制限を超えています。",
+  "onlySpaces": "フィールドは空白のみを含むことはできません。空でない値を提供してください。",
+  "invalidLiffId": "LIFF IDは英数字とハイフンのみ使用できます。（例: 1234567890-abcdefgh）",
+  "invalidCodeName": "コード名には小文字のアルファベットとアンダースコアのみ使用できます。",
+  "maxOperatorNumeric": "最大オペレーター数は有効な数値である必要があります。",
+  "maxOperatorNotDecimal": "小数値は許可されていません。整数を入力してください。",
+  "maxOperatorPositive": "最大オペレーター数は正の数である必要があります。",
+  "maxOperatorMaxValueExceeded": "許容される最大オペレーター数を超えています。",
+  "organization": {
+    "notAllowed": "この企業にアクセスする権限がありません",
+    "notFound": "企業が見つかりません"
+  },
+  "operator": {
+    "notFound": "オペレーターが見つかりません"
+  },
+  "upload": {
+    "fileInvalid": "対応していないファイル形式です。",
+    "fileTooLarge": "ファイルが最大サイズを超えています。"
+  },
+  "qrDownload": {
+    "noActiveOperators": "ダウンロードできません：現在のページにアクティブなオペレーターがいません",
+    "failed": "ファイルのダウンロードに失敗しました"
+  },
+  "failedToLoadMore": "さらに多くのデータを読み込むのに失敗しました",
+  "failedToRefetchAgain": "再取得に失敗しました。もう一度リフレッシュしてください。",
+  "notificationsBlocked": "通知の有効化に失敗しました。お使いのブラウザ設定にて、通知を有効にしてください。",
+  "messageTooLong": "メッセージが文字数制限を超えています",
+  "chatReplySetting": {
+    "overlappingTimeranges": "範囲が重複しています。解決してください。"
+  },
+  "chatAssignRules": {
+    "mustHaveFilterOrSubgroup": "少なくとも 1 つのフィルタまたはサブグループが必要です",
+    "mustHaveTwoItems": "少なくとも2つの項目が必要です",
+    "selectAtLeastOneTeam": "少なくとも1つのチームを選択してください",
+    "filter": {
+      "mustHaveConditionOrSubgroup": "少なくとも1つの条件またはサブグループが必要です",
+      "enterField": "フィールドを選択してください",
+      "valueRequired": "この条件には値が必要です",
+      "invalidRegexPattern": "無効な正規表現パターンです",
+      "valueTooLong": "値が長すぎます",
+      "maxInt32Exceeded": "値は2,147,483,647を超えられません",
+      "maxNestedDepthExceeded": "最大ネスト深度{{maxDepth}}を超えました"
+    }
+  }
+}

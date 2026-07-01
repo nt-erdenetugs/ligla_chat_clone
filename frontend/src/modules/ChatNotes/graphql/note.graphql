@@ -1,0 +1,35 @@
+fragment noteFragment on ChatNote {
+  id
+  chatId
+  noteValue
+  createdAt
+  updatedAt
+  user {
+    id
+    displayName
+  }
+}
+
+query notes($chatId: String!) {
+  notes(chatId: $chatId) {
+    ...noteFragment
+  }
+}
+
+mutation createNote($createNoteInput: CreateChatNoteInput!) {
+  createNote(createNoteInput: $createNoteInput) {
+    ...noteFragment
+  }
+}
+
+mutation updateNote($updateNoteInput: UpdateChatNoteInput!) {
+  updateNote(updateNoteInput: $updateNoteInput) {
+    ...noteFragment
+  }
+}
+
+mutation removeNote($id: String!, $chatId: String!) {
+  removeNote(id: $id, chatId: $chatId) {
+    ...noteFragment
+  }
+}

@@ -1,0 +1,62 @@
+fragment organizationWithUsersFragment on Organization {
+  id
+  name
+  apiKey
+  displayName
+  description
+  maxOperator
+  operatorCount
+  loginLiffId
+  fileUploadLiffId
+  isActive
+  users {
+    id
+    email
+    displayName
+    roleType
+    status
+  }
+}
+
+query organization($name: String!) {
+  organization(name: $name) {
+    ...organizationWithUsersFragment
+  }
+}
+
+# TODO: Remove organizations query after pagination feature [phase 2][task 94140238]
+query organizations {
+  organizations {
+    items {
+      ...organizationWithUsersFragment
+    }
+    count
+  }
+}
+
+query paginatedOrganizations($skip: Int, $take: Int, $filter: FilterInput) {
+  organizations(skip: $skip, take: $take, filter: $filter) {
+    items {
+      ...organizationWithUsersFragment
+    }
+    count
+  }
+}
+
+mutation createOrganization($createOrganizationInput: CreateOrganizationInput!) {
+  createOrganization(createOrganizationInput: $createOrganizationInput) {
+    ...organizationWithUsersFragment
+  }
+}
+
+mutation updateOrganization($updateOrganizationInput: UpdateOrganizationInput!) {
+  updateOrganization(updateOrganizationInput: $updateOrganizationInput) {
+    ...organizationWithUsersFragment
+  }
+}
+
+mutation toggleOrganizationStatus($name: String!) {
+  toggleOrganizationStatus(name: $name) {
+    ...organizationWithUsersFragment
+  }
+}

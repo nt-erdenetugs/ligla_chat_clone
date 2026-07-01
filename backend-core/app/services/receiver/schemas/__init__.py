@@ -1,0 +1,10 @@
+from app.services.receiver.schemas.chat import *  # noqa
+from app.services.receiver.schemas.chat_assignment_rule import *  # noqa
+from app.services.receiver.schemas.end_user import *  # noqa
+from app.services.receiver.schemas.message import *  # noqa
+from app.services.receiver.schemas.operator import *  # noqa
+from app.services.receiver.schemas.organization import *  # noqa
+from app.services.receiver.schemas.store import *  # noqa
+from app.services.receiver.schemas.store_team import *  # noqa
+from app.services.receiver.schemas.survey import *  # noqa
+from app.services.receiver.schemas.team import *  # noqa

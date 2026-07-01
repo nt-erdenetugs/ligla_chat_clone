@@ -1,0 +1,206 @@
+{
+  "auth": {
+    "success": {
+      "resetLink": "パスワードリセットリンクがあなたのメールアドレスに送信されました",
+      "resetPassword": "パスワードが正常にリセットされました",
+      "reInvite": "ユーザーを再招待しました",
+      "updateName": "アカウント名を保存しました",
+      "updateSenderName": "送信者名を保存しました",
+      "updatePassword": "パスワードの変更を保存しました",
+      "updateProfile": "プロフィールが更新されました"
+    },
+    "info": {
+      "sessionExpired": "セッションが切れました。再度ログインしてください"
+    }
+  },
+  "operatorSelector": {
+    "error": {
+      "onlyYourself": "未割り当てのチャットに自分自身のみを割り当てることができます",
+      "notAuthorized": "このチャットを割り当てる権限がありません",
+      "cannotReassignToOtherTeam": "他のチームによって割り当てられたチャットにオペレーターを再割り当てすることはできません",
+      "cannotAssignToOtherTeam": "他のチームによって割り当てられたチャットにオペレーターを割り当てることはできません"
+    }
+  },
+  "copy": {
+    "copiedToClipboard": "クリップボードにコピーしました"
+  },
+  "organization": {
+    "success": {
+      "create": "企業が正常に作成されました",
+      "update": "企業が正常に更新されました"
+    }
+  },
+  "team": {
+    "success": {
+      "create": "チームを作成しました!",
+      "update": "チームを更新しました!",
+      "disable": "チームを無効化しました!"
+    },
+    "error": {
+      "mustHaveOneTeam": "チャットには少なくとも1つのチームを割り当てる必要があります",
+      "mustHaveOneOperator": "チャットには少なくとも1人のオペレーターを割り当てる必要があります",
+      "cannotRemoveYourTeam": "あなたが所属していないチームを削除することはできません",
+      "cannotRemoveDefaultTeamWithAdmin": "割り当てられた管理者を持つデフォルトチームを削除することはできません",
+      "cannotRemoveTeamWithOperators": "割り当てられたオペレーターを持つチームを削除することはできません",
+      "notAuthorizedToAssignChat": "チャットにチームを割り当てる権限がありません"
+    }
+  },
+  "user": {
+    "success": {
+      "create": "ユーザーが正常に作成されました",
+      "update": "ユーザーが正常に更新されました",
+      "disable": "ユーザーが正常に無効化されました"
+    },
+    "warning": {
+      "nameTooLongToSendMessage": "アカウント名は送信前に短縮されています。{{limit}}文字以内に更新してください。"
+    }
+  },
+  "chat": {
+    "success": {
+      "status": {
+        "autoChanged": "返信後、チャットのステータスは自動的に「{{ status }}」に変更されました",
+        "changed": "チャットのステータスが「{{ status }}」に変更されました"
+      },
+      "message": {
+        "retried": "メッセージが正常に再試行されました",
+        "delete": "メッセージは正常に削除されました。"
+      },
+      "uploadLink": {
+        "sent": "アップロードリンクを送信しました。"
+      },
+      "file": {
+        "upload": "ファイルアップロードが完了しました",
+        "delete": "ファイルを削除しました",
+        "download": "ファイルをダウンロードしました"
+      }
+    },
+    "error": {
+      "message": {
+        "retried": "メッセージの再試行に失敗しました",
+        "delete": "メッセージの削除に失敗しました。",
+        "send": "メッセージの送信に失敗しました"
+      },
+      "uploadLink": {
+        "build": "アップロードリンクの生成に失敗しました。LIFF URLを確認してください。",
+        "failed": "アップロードリンクの送信に失敗しました。"
+      },
+      "file": {
+        "upload": "ファイルアップロードに失敗しました。",
+        "download": "ファイルダウンロードに失敗しました。",
+        "delete": "ファイルを削除できませんでした",
+        "permission": "アップロード権限がありません。",
+        "invalidType": "非対応のファイルタイプです。",
+        "duplicateName": "同じ名前のファイルがすでに追加済みです。",
+        "empty": "空のファイルはアップロードできません。",
+        "tooLarge": "ファイルサイズが大きすぎます。最大{{fileSize}}までアップロードできます。",
+        "disguised": "サポートされていないファイル形式です。"
+      },
+      "liff": {
+        "login": "LINEログインに失敗しました。再度お試しください。"
+      }
+    },
+    "info": {
+      "tabAutoSwitched": "チャットリストタブが自動で切り替わりました。"
+    }
+  },
+  "chatReplySetting": {
+    "success": {
+      "create": "チャット自動応答の設定を作成しました",
+      "update": "チャット自動応答の設定を更新しました"
+    },
+    "error": {
+      "create": "チャット自動応答の設定の作成に失敗しました",
+      "update": "チャット自動応答の設定の更新に失敗しました"
+    }
+  },
+  "attribute": {
+    "success": {
+      "create": "属性の作成に成功しました",
+      "update": "属性の更新に成功しました",
+      "disable": "属性の無効化に成功しました",
+      "fill": "属性が正常に入力されました"
+    },
+    "error": {
+      "noAttributeSelected": "属性が選択されていません"
+    }
+  },
+  "tag": {
+    "success": {
+      "create": "タグを作成しました",
+      "update": "タグを更新しました",
+      "disable": "タグを無効化しました"
+    }
+  },
+  "note": {
+    "success": {
+      "create": "ノートが正常に作成されました",
+      "update": "ノートが正常に更新されました",
+      "delete": "ノートが正常に削除されました"
+    }
+  },
+  "common": {
+    "close": "閉じる",
+    "cancel": "キャンセル",
+    "loading": "ローディング中…"
+  },
+  "pwa": {
+    "installPrompt": "オフラインアクセスとホーム画面からの素早い起動で、より良い体験のためにこのアプリをインストールしてください。",
+    "installBtn": "今すぐインストール",
+    "installInstructionsIOS": "iOSデバイスにこのアプリをインストールするには、以下の手順に従ってください：",
+    "unsupportedMessage": "このデバイスではアプリのインストールがサポートされていません。ウェブ版を引き続きご利用いただけます。",
+    "dontShowAgain": "今後表示しない",
+    "installationSuccess": "アプリのインストールが完了しました！ホーム画面からアクセスできます。",
+    "installationDismissed": "アプリのインストールがキャンセルされました。後でブラウザのメニューからインストールできます。",
+    "installationError": "アプリのインストールに失敗しました。もう一度お試しいただくか、ブラウザから手動でインストールしてください。",
+    "iosInstall": {
+      "step1": "Safariブラウザでこのウェブサイトを開く",
+      "step2": "下部の共有ボタンをタップ",
+      "step3": "「ホーム画面に追加」を選択"
+    },
+    "storage": {
+      "quotaExceeded": "ストレージが満杯です。設定を保存するために容量を空けてください。",
+      "disabled": "ブラウザのストレージが無効になっています。一部の機能が正常に動作しない可能性があります。",
+      "error": "設定を保存できませんでした。もう一度お試しください。"
+    }
+  },
+  "memberFeed": {
+    "success": {
+      "update": "会員フィード設定が更新されました",
+      "restore": "会員フィード設定をもとに復元されました"
+    }
+  },
+  "survey": {
+    "success": {
+      "update": "アンケート設定が正常に更新されました",
+      "restore": "アンケート設定をもとに戻しました"
+    }
+  },
+  "chatAssignRules": {
+    "success": {
+      "create": "割り当てルールが正常に作成されました",
+      "update": "割り当てルールが正常に更新されました",
+      "delete": "割り当てルールが正常に削除されました"
+    },
+    "error": {
+      "noRuleSelected": "ルールが選択されていません"
+    }
+  },
+  "chatAssignFilters": {
+    "success": {
+      "create": "フィルターが正常に作成されました",
+      "update": "フィルターが正常に更新されました",
+      "delete": "フィルターが正常に削除されました"
+    },
+    "error": {
+      "noFilterSelected": "フィルターが選択されていません"
+    }
+  },
+  "filter": {
+    "error": {
+      "applyFailed": "フィルタの適用に失敗しました",
+      "validation": "フィルタの入力が無効です",
+      "saveFailed": "フィルタの保存に失敗しました",
+      "searchFailed": "フィルタの検索に失敗しました"
+    }
+  }
+}

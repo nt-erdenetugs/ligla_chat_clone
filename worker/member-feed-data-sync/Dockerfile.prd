@@ -1,0 +1,45 @@
+FROM --platform=linux/amd64 python:3.14.3-slim AS build-stage
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+WORKDIR /code
+
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_PROJECT_ENVIRONMENT=/usr/local
+ENV UV_HTTP_TIMEOUT=300
+
+COPY ./worker/member-feed-data-sync/pyproject.toml .
+RUN uv sync --no-dev --no-cache
+
+COPY ./worker/member-feed-data-sync/app ./app
+RUN python -m compileall -b app && find app -name "*.py" -delete
+
+FROM --platform=linux/amd64 python:3.14.3-slim
+
+ENV PYTHONUNBUFFERED=1
+ENV TZ=Asia/Tokyo
+
+RUN echo "${TZ}" > /etc/timezone \
+    && rm /etc/localtime \
+    && ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
+    && dpkg-reconfigure -f noninteractive tzdata
+
+RUN apt-get update && apt-get -y install locales && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+
+RUN echo "ja_JP.UTF-8 UTF-8" >> /etc/locale.gen && \
+    dpkg-reconfigure -f noninteractive locales
+
+ENV LANG=ja_JP.UTF-8
+ENV LANGUAGE=ja_JP.UTF-8
+ENV LC_ALL=ja_JP.UTF-8
+
+WORKDIR /code
+
+COPY --from=build-stage /usr/local /usr/local
+COPY --from=build-stage /code/app ./app
+
+ENV PORT=8080
+EXPOSE 8080
+
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]

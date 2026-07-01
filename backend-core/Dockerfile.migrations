@@ -1,0 +1,47 @@
+FROM --platform=linux/amd64 python:3.14.3-slim
+
+COPY --from=ghcr.io/astral-sh/uv:0.7.3 /uv /uvx /bin/
+
+WORKDIR /code
+
+ENV PYTHONUNBUFFERED=1
+ENV TZ=Asia/Tokyo
+ENV LANG=ja_JP.UTF-8
+ENV LANGUAGE=ja_JP.UTF-8
+ENV LC_ALL=ja_JP.UTF-8
+
+RUN apt-get update && apt-get -y install locales curl wget && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+
+RUN echo "ja_JP.UTF-8 UTF-8" >> /etc/locale.gen && \
+    dpkg-reconfigure -f noninteractive locales
+
+RUN echo "${TZ}" > /etc/timezone \
+    && rm /etc/localtime \
+    && ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
+    && dpkg-reconfigure -f noninteractive tzdata
+
+RUN PROXY_SHA256="209c7affd90d58bd438b030b528af88033841830904e196e3309e2776168a46e" && \
+    wget https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.17.1/cloud-sql-proxy.linux.amd64 \
+        -O /usr/local/bin/cloud_sql_proxy && \
+    echo "${PROXY_SHA256}  /usr/local/bin/cloud_sql_proxy" | sha256sum -c - && \
+    chmod +x /usr/local/bin/cloud_sql_proxy
+
+COPY backend-core/pyproject.toml backend-core/uv.lock ./
+# Create stub package for uv to resolve dependencies
+RUN mkdir -p app && touch app/__init__.py
+# Install all dependencies (tenant_manager imports app.db.* which requires full project deps)
+RUN uv sync --frozen --no-editable
+
+COPY ./backend-core/app ./app
+COPY ./backend-core/alembic ./alembic
+COPY ./backend-core/alembic.ini .
+COPY ./backend-core/jobs ./jobs
+
+ARG ENV
+COPY ./secret/credentials.${ENV}.json /tmp/keys/credentials.json
+ENV GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+
+# db_runner.py reads DB_JOB_COMMAND when no CLI args are given
+ENV DB_JOB_COMMAND=""
+CMD ["uv", "run", "python", "-m", "jobs.db_runner"]

@@ -1,0 +1,138 @@
+fragment chatAssignRuleFragment on ChatAssignRule {
+  id
+  name
+  note
+  isActive
+  createdAt
+  updatedAt
+  rootFilterGroup {
+    ...filterGroupFragmentLevel10
+  }
+  targetTeams {
+    id
+    name
+    createdAt
+  }
+}
+
+query chatAssignRules($skip: Int, $take: Int, $filter: FilterInput) {
+  chatAssignRules(skip: $skip, take: $take, filter: $filter) {
+    items {
+      ...chatAssignRuleFragment
+    }
+    count
+  }
+}
+
+query chatAssignRule($id: String!) {
+  chatAssignRule(id: $id) {
+    ...chatAssignRuleFragment
+  }
+}
+
+query selectableChatAssignFilters {
+  selectableChatAssignFilters {
+    id
+    name
+    targetTable
+  }
+}
+
+mutation createChatAssignRule($createChatAssignRuleInput: CreateChatAssignRuleInput!) {
+  createChatAssignRule(createChatAssignRuleInput: $createChatAssignRuleInput) {
+    ...chatAssignRuleFragment
+  }
+}
+
+mutation updateChatAssignRule($updateChatAssignRuleInput: UpdateChatAssignRuleInput!) {
+  updateChatAssignRule(updateChatAssignRuleInput: $updateChatAssignRuleInput) {
+    ...chatAssignRuleFragment
+  }
+}
+
+mutation deleteChatAssignRule($id: String!) {
+  deleteChatAssignRule(id: $id) {
+    id
+  }
+}
+
+# ---------- recursive-style fragments ----------
+fragment filterGroupBaseFragment on ChatAssignFilterGroup {
+  id
+  logicalOperator
+  filters {
+    id
+    name
+    targetTable
+  }
+}
+
+fragment filterGroupFragmentLevel1 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupBaseFragment
+  }
+}
+
+fragment filterGroupFragmentLevel2 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupFragmentLevel1
+  }
+}
+
+fragment filterGroupFragmentLevel3 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupFragmentLevel2
+  }
+}
+
+fragment filterGroupFragmentLevel4 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupFragmentLevel3
+  }
+}
+
+fragment filterGroupFragmentLevel5 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupFragmentLevel4
+  }
+}
+
+fragment filterGroupFragmentLevel6 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupFragmentLevel5
+  }
+}
+
+fragment filterGroupFragmentLevel7 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupFragmentLevel6
+  }
+}
+
+fragment filterGroupFragmentLevel8 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupFragmentLevel7
+  }
+}
+
+fragment filterGroupFragmentLevel9 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupFragmentLevel8
+  }
+}
+
+fragment filterGroupFragmentLevel10 on ChatAssignFilterGroup {
+  ...filterGroupBaseFragment
+  subGroups {
+    ...filterGroupFragmentLevel9
+  }
+}

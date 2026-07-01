@@ -1,0 +1,153 @@
+services:
+  postgres-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    command: ["postgres", "-c", "shared_preload_libraries=pg_bigm"]
+    environment:
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_password
+      POSTGRES_DB: ligla_chat_test
+      POSTGRES_HOST: postgres-test
+    ports:
+      - "5433:5432"
+    networks:
+      - test_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test_user -d ligla_chat_test"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  test-migrate:
+    image: ligla_core:local
+    command: >
+      sh -c "rm -rf /code/alembic/__pycache__ /code/alembic/versions/__pycache__ && alembic upgrade head"
+    environment:
+      - DB_HOST=postgres-test
+      - DB_PORT=5432
+      - DB_USER=test_user
+      - DB_PASS=test_password
+      - DB_NAME=ligla_chat_test
+      - GCP_PROJECT_ID=test-project
+      - BFF_URL_RECEIVE_CHAT=http://localhost:3000
+      - RECEIVE_MESSAGE_TOPIC_NAME=test-topic
+      - RECEIVE_MESSAGE_TOPIC_SUBSCRIPTION_NAME=test-sub
+      - RECEIVE_MESSAGE_DLQ_TOPIC_NAME=test-dlq
+      - RECEIVE_MESSAGE_DLQ_TOPIC_SUBSCRIPTION_NAME=test-dlq-sub
+      - RECEIVE_MESSAGE_PUSH_ENDPOINT=http://localhost:8000/push
+      - GCP_STORAGE_CHAT_DATA_BUCKET=test-bucket
+      - LIGLA_MESSAGE_BASE_URL=http://localhost:8000
+      - GCP_STORAGE_CHAT_PUBLIC_DATA_BUCKET=test-bucket-public
+      - CHAT_METADATA_SYNC_TOPIC_NAME=test-chat-metadata-sync
+      - CHAT_METADATA_SYNC_TOPIC_SUBSCRIPTION_NAME=test-chat-metadata-sync-sub
+      - CHAT_METADATA_SYNC_DLQ_TOPIC_NAME=test-chat-metadata-sync-dlq
+      - CHAT_METADATA_SYNC_DLQ_TOPIC_SUBSCRIPTION_NAME=test-chat-metadata-sync-dlq-sub
+      - DATA_EXPORTER_URL=http://localhost:8080
+      - CLOUD_SQL_CONNECTION_NAME=test-connection
+      - PUBSUB_SERVICE_ACCOUNT_EMAIL="local-dev@example.com"
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+    networks:
+      - test_network
+    restart: "no"
+
+  storage-emulator-test:
+    image: fsouza/fake-gcs-server:latest
+    container_name: storage-emulator-test
+    command:
+      - '-scheme'
+      - 'http'
+      - '-external-url'
+      - 'http://storage-emulator-test:4443'
+      - '-public-host'
+      - 'localhost:4444'
+    ports:
+      - '4444:4443'
+    volumes:
+      - test_storage_data:/data
+    networks:
+      - test_network
+    healthcheck:
+      test: ["CMD-SHELL","nc -z localhost 4443 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  storage-init-test:
+    image: curlimages/curl:7.85.0
+    container_name: storage-init-test
+    depends_on:
+      storage-emulator-test:
+        condition: service_healthy
+    entrypoint:
+      - sh
+      - -euxc
+      - |
+        curl -v -X POST \
+        -H "Content-Type: application/json" \
+        "http://storage-emulator-test:4443/storage/v1/b?project=test-project&predefinedAcl=publicRead&predefinedDefaultObjectAcl=publicRead" \
+        -d "{\"name\":\"test-bucket-public\"}"
+    restart: "no"
+    networks:
+      - test_network
+
+  test-runner:
+    image: ligla_bff:local
+    command: >
+      sh -c "
+      if [ \"$$TEST_TYPE\" = \"unit\" ]; then
+        echo \"Running unit tests...\" &&
+        npm run test:unit;
+      elif [ \"$$TEST_TYPE\" = \"e2e\" ]; then
+        if [ -n \"$$TEST_FILE\" ]; then
+          echo \"Running E2E tests for module: $$TEST_FILE\" &&
+          npx jest --config ./test/jest-e2e.json --runInBand --coverage $$TEST_FILE;
+        else
+          echo \"Running all E2E tests...\" &&
+          npm run test:e2e;
+        fi
+      else
+        echo \"ERROR: TEST_TYPE must be set to 'unit' or 'e2e'\" &&
+        exit 1;
+      fi"
+    volumes:
+      - ./backend-bff:/code
+      - bff_test_node_modules:/code/node_modules
+    environment:
+      - DATABASE_URL=postgresql://test_user:test_password@postgres-test:5432/ligla_chat_test
+      - NODE_ENV=test
+      - PORT=3000
+      - JWT_SECRET=test_jwt_secret_key_for_e2e_testing_only
+      - JWT_EXPIRES_IN=1h
+      - JWT_REFRESH_SECRET=test_refresh_secret
+      - JWT_REFRESH_EXPIRES_IN=7d
+      - CORE_API_URL=http://localhost:8000
+      - GCP_PROJECT_ID=test-project
+      - GCP_STORAGE_CHAT_DATA_BUCKET=test-bucket
+      - GCP_STORAGE_CHAT_PUBLIC_DATA_BUCKET=test-bucket-public
+      - GCP_STORAGE_CHAT_PUBLIC_MEDIA_URL=http://localhost:4444/download/storage/v1/b/test-bucket-public/o
+      - GCS_EMULATOR_HOST=http://storage-emulator-test:4443
+      - MAIL_ENABLED=false
+      - MAIL_FROM=test@example.com
+      - VAPID_PUBLIC_KEY=BOQfG7XzTGkmHHIGF_vJ-WGZmuCT53CJyN-fm_Sx_eqXfWNtvUtDP6ZQ_ftsXiO9Va715n9Z-6TFssbtAdtbqG4
+      - VAPID_PRIVATE_KEY=2mQMQqfgZjy-Z05ThVQ8_Fxi0dwP3ukPplrH-Re7__E
+      - MAIL_DOMAIN=test.com
+      - BASE_URL=http://localhost:3000
+      - TEST_TYPE=${TEST_TYPE}
+      - TEST_FILE=${TEST_FILE}
+      - ENCRYPTION_MASTER_KEY=dGVzdC1lbmNyeXB0aW9uLW1hc3Rlci1rZXkhITMyYnk=
+      - PUBSUB_SERVICE_ACCOUNT_EMAIL="local-dev@example.com"
+    networks:
+      - test_network
+    restart: "no"
+
+networks:
+  test_network:
+    driver: bridge
+
+volumes:
+  bff_test_node_modules:
+  test_storage_data:

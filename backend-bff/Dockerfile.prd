@@ -1,0 +1,12 @@
+FROM --platform=linux/amd64 node:22.21.0-alpine
+
+RUN apk update \
+	&& apk add --no-cache openssl \
+	&& rm -rf /var/cache/apk/* /var/lib/apt/lists/*
+
+WORKDIR /code
+
+COPY ./backend-bff/package*.json .
+RUN npm install
+
+EXPOSE 3000

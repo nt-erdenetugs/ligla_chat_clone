@@ -1,0 +1,252 @@
+{
+  "status": "Status",
+  "active": "Active",
+  "inactive": "Inactive",
+  "locked": "Locked",
+  "pending": "Pending",
+  "createdDate": "Created Date",
+  "note": "Note",
+  "subtitle": {
+    "details": "Details",
+    "edit": "Edit",
+    "create": "Create New"
+  },
+  "users": {
+    "title": "Operators",
+    "formTitle": "User",
+    "profile": "Profile",
+    "name": "Name",
+    "senderName": "Sender Name",
+    "email": "Email Address",
+    "role": "Role",
+    "teams": "Teams",
+    "editUser": "Edit User",
+    "unlockUser": "Unlock User",
+    "reInvite": "Reinvite user",
+    "activate": "Activate user",
+    "deactivate": "Deactivate user",
+    "createNewUser": "Create New User",
+    "selectRoles": "Select Roles",
+    "enterName": "Enter Name",
+    "noTargetUsers": "No target users",
+    "assignAtLeastOneTeam": "A user must be assigned to at least one team or the default team.",
+    "subtitle": "Operators: {{operatorCount}}/{{maxOperatorCount}}"
+  },
+  "roles": {
+    "admin": "Admin",
+    "adminOperator": "Admin Operator",
+    "manager": "Manager",
+    "managerOperator": "Manager Operator",
+    "operator": "Operator"
+  },
+  "teams": {
+    "title": "Teams",
+    "formTitle": "Team",
+    "default": "(Default)",
+    "name": "Name",
+    "managers": "Managers",
+    "operators": "Operators",
+    "numOfOperators": "Operators",
+    "stores": "Stores",
+    "createNewTeam": "Create New Team",
+    "enterName": "Enter Name",
+    "selectManagers": "Select Managers",
+    "noManagersText": "No managers found",
+    "selectOperators": "Select Operators",
+    "noOperatorsText": "No operators found",
+    "selectStores": "Select Stores",
+    "noStoresText": "No stores found",
+    "selectTeams": "Select Teams",
+    "createTeam": "Create Team",
+    "editTeam": "Edit Team",
+    "noTargetTeams": "No target teams",
+    "selectTeamsTooltip": "Teams must be changed through the Teams page",
+    "helper": {
+      "cantChange": "You cannot change the name of a default team or deleted team",
+      "noPermissionToSelectManagers": "You dont have permission to select managers",
+      "noPermissionToSelectStores": "You dont have permission to select stores"
+    },
+    "teamSetting": {
+      "teamChatSetting": {
+        "title": "Chat config",
+        "viewAllChatsEnabled": {
+          "options": {
+            "start": "Shared",
+            "end": "Private"
+          }
+        }
+      }
+    }
+  },
+  "stores": {
+    "title": "Stores",
+    "formTitle": "Store",
+    "storeID": "Store ID",
+    "name": "Store name",
+    "liglaStoreID": "Ligla Store ID",
+    "locationArea": "Location area",
+    "facilityType": "Facility type",
+    "displayPeriod": "Store display period",
+    "note": "Administrative Note",
+    "noTargetStores": "No target stores"
+  },
+  "tags": {
+    "title": "Tags",
+    "formTitle": "Tag",
+    "name": "Name",
+    "createNewTag": "Create New Tag",
+    "editTag": "Edit Tag",
+    "noTargetTag": "No target tag"
+  },
+  "organizations": {
+    "title": "Organizations",
+    "formTitle": "Organization",
+    "companyCodeName": "Client Code",
+    "apiKey": "API Key",
+    "invalidApiKey": "Invalid API Key",
+    "companyName": "Service Name",
+    "companyAdministratorEmail": "Administrators Email",
+    "enterName": "Enter Name",
+    "activeOperators": "Active Operators",
+    "operatorLimit": "Operator Limit",
+    "loginLiffId": "Login App LIFF ID",
+    "fileUploadLiffId": "Upload App LIFF ID",
+    "notes": "Notes",
+    "createNewOrganization": "Create Organization",
+    "editOrganization": "Edit Organization",
+    "maxOperators": "Max Operators",
+    "defaultIs": "Default is",
+    "max": "Max",
+    "noTargetOrganization": "No target organization",
+    "addCompanyAdministratorEmail": "Add Administrator Email",
+    "teamSettings": "Team Settings",
+    "userInvitationPending": "User invitation pending"
+  },
+  "hypervisor": {
+    "title": "Hypervisor"
+  },
+  "attributes": {
+    "title": "Attributes",
+    "formTitle": "Attribute",
+    "name": "Name",
+    "type": "Type",
+    "selectOptions": "Select Options",
+    "createAttribute": "Create New Attribute",
+    "editAttribute": "Edit Attribute",
+    "noTargetAttributes": "No target attributes",
+    "enableAttributeEncryption": "Enable encryption",
+    "encryptionLockedTooltip": "Encryption setting cannot be changed after the attribute is created",
+    "enterType": "Enter Type",
+    "isEncrypted": "isEncrypted",
+    "value": "Value *",
+    "label": "Label",
+    "addOption": "Add Option"
+  },
+  "toggle": {
+    "title": "Switching the status",
+    "action": "Switch",
+    "switchingToActive": "Switching to active? Are you sure?",
+    "switchingToInactive": "Switching to inactive? Are you sure?"
+  },
+  "filters": "Filters",
+  "clearAll": "Clear All",
+  "rowsPerPage": "Rows per page",
+  "items": "items",
+  "columnSettings": {
+    "column": {
+      "show": "Show",
+      "name": "Column",
+      "alias": "Column Name"
+    },
+    "title": "Display Items Settings"
+  },
+  "memberFeedColumns": {
+    "title": "Member Feed",
+    "formTitle": "Member Feed"
+  },
+  "surveyColumns": {
+    "title": "Survey",
+    "formTitle": "Survey"
+  },
+  "chatAssignRules": {
+    "title": "Assignment Rules",
+    "formTitle": "Rule",
+    "appliedTeams": "Applied Teams",
+    "noTargetRules": "No target rules",
+    "filterManagements": "Filter managements",
+    "name": "Name",
+    "content": "Content",
+    "addGroup": "Add group",
+    "addInnerGroup": "Add inner group",
+    "createFilter": "Create filter",
+    "dropFilterOrCreate": "Drop a filter\nor click 'Create Filter'"
+  },
+  "chatAssignFilters": {
+    "title": "Filters",
+    "formTitle": "Filter",
+    "noTargetFilters": "No target filters",
+    "conditionsWrong": "Please check the conditions and fill in the required fields",
+    "searchByFilter": "Search by filter",
+    "noFiltersFound": "No filters found",
+    "categories": "Categories",
+    "allCategories": "All categories",
+    "store": "Store",
+    "survey": "Survey",
+    "name": "Name",
+    "targetTable": "Target table",
+    "filterBuilder": {
+      "conditions": "Conditions",
+      "selectColumn": "Select column",
+      "selectOperator": "Select operator",
+      "column": "Column",
+      "operator": "Operator",
+      "value": "Value",
+      "dateValue": "Date",
+      "enterValue": "Enter value",
+      "enterNumberValue": "Enter number value",
+      "enterDateValue": "Enter date",
+      "enterValuesSeparatedBySpace": "Enter values separated by space",
+      "addCondition": "Add condition",
+      "operators": {
+        "equal": "Equals",
+        "notEqual": "Not equal",
+        "include": "Includes",
+        "notInclude": "Does not include",
+        "regex": "Regular expression",
+        "null": "Value is empty",
+        "notNull": "Value is not empty",
+        "greaterThan": "Greater than",
+        "lessThan": "Less than",
+        "greaterThanOrEqual": "Greater than or equal",
+        "lessThanOrEqual": "Less than or equal",
+        "valuesMatchAny": "Values match any (space separated)",
+        "valuesDoNotMatchAny": "Values do not match any (space separated)"
+      },
+      "sentences": {
+        "favoriteStore": {
+          "equals": "Selected favorite stores equal '{{value}}'",
+          "notEquals": "Selected favorite stores do not equal '{{value}}'",
+          "matchesAny": "Selected favorite stores are in '{{value}}'",
+          "doesNotMatchAny": "Selected favorite stores are not in '{{value}}'",
+          "isEmpty": "No favorite stores selected",
+          "isNotEmpty": "Any favorite stores are selected"
+        },
+        "survey": {
+          "equals": "Survey '{{field}}'' value equals '{{value}}'",
+          "notEquals": "Survey '{{field}}'' value does not equal '{{value}}'",
+          "includes": "Survey '{{field}}'' value includes '{{value}}'",
+          "doesNotInclude": "Survey '{{field}}'' value does not include '{{value}}'",
+          "matchesPattern": "Survey '{{field}}'' value matches pattern '{{value}}'",
+          "greaterThan": "Survey '{{field}}'' value is greater than '{{value}}'",
+          "lessThan": "Survey '{{field}}'' value is less than '{{value}}'",
+          "greaterThanOrEquals": "Survey '{{field}}'' value is '{{value}}' or later",
+          "lessThanOrEquals": "Survey '{{field}}'' value is '{{value}}' or earlier",
+          "matchesAny": "Survey '{{field}}'' value is any of '{{value}}'",
+          "doesNotMatchAny": "Survey '{{field}}'' value is none of '{{value}}'",
+          "isEmpty": "Survey '{{field}}'' value is empty",
+          "isNotEmpty": "Survey '{{field}}'' has any value"
+        }
+      }
+    }
+  }
+}

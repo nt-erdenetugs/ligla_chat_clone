@@ -1,0 +1,17 @@
+{
+  "chat": {
+    "eventSentToSSE": "Event sent to SSE client:{chatId}",
+    "anonymous": "Anonymous",
+    "sentMedia": "Sent media",
+    "sentMessage": "Sent message",
+    "startedChat": "Started a new chat",
+    "endedChat": "Ended chat session",
+    "changedStatus": "{actor} changed the status to {newStatus}",
+    "status": {
+      "pending": "Pending",
+      "addressing": "Addressing",
+      "done": "Done"
+    },
+    "userUnblocked": "Unblocked the conversation"
+  }
+}

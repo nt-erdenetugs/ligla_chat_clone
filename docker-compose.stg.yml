@@ -1,0 +1,121 @@
+services:
+  backend-core-stg:
+    image: chat_core:stg
+    build:
+      context: .
+      dockerfile: backend-core/Dockerfile.stg
+      platforms:
+        - linux/amd64
+    platform: linux/amd64
+    volumes:
+      - ./backend-core/:/code/
+      - ./secret/credentials.stg.json:/tmp/keys/credentials.json:ro
+      - ./secret/.env.stg:/tmp/keys/.env.stg:ro
+      - cloudsql_stg:/cloudsql
+    env_file:
+      - ./secret/.env.stg
+    ports:
+      - 8080:8080
+    depends_on:
+      - cloudsql-proxy-stg
+    networks:
+      - network_back_stg
+    environment:
+      - ENV=staging
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+      - SERVICE_ACCOUNT=chat-staging@tt-ligla-stg.iam.gserviceaccount.com
+
+  backend-bff-stg:
+    image: chat_bff:stg
+    build:
+      context: .
+      dockerfile: backend-bff/Dockerfile.stg
+      platforms:
+        - linux/amd64
+    platform: linux/amd64
+    command: npm run start:stg
+    volumes:
+      - ./backend-bff/:/code
+      - ./secret/credentials.stg.json:/tmp/keys/credentials.json:ro
+      - bff_node_modules_stg:/code/node_modules
+      - cloudsql_stg:/cloudsql
+    ports:
+      - 3000:3000
+    env_file:
+      - ./secret/.env.stg
+    depends_on:
+      - cloudsql-proxy-stg
+    networks:
+      - network_back_stg
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+
+  frontend-stg:
+    image: chat_front:stg
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.stg
+    command: npm run start:stg
+    volumes:
+      - ./frontend/:/code
+      - ./backend-bff/src/schema.gql:/code/src/schema.gql
+      - front_node_modules_stg:/code/node_modules
+    env_file:
+      - ./secret/.env.stg
+    ports:
+      - 8001:8001
+    depends_on:
+      - backend-bff-stg
+    networks:
+      - network_back_stg
+
+  chat-member-feed-sync-stg:
+    image: chat_member_feed_sync:stg
+    build:
+      context: .
+      dockerfile: worker/member-feed-data-sync/Dockerfile.stg
+      platforms:
+        - linux/amd64
+    platform: linux/amd64
+    volumes:
+      - ./worker/member-feed-data-sync/:/code/
+      - ./secret/credentials.stg.json:/tmp/keys/credentials.json:ro
+      - ./secret/.env.stg:/tmp/keys/.env.stg:ro
+      - cloudsql_stg:/cloudsql
+    env_file:
+      - ./secret/.env.stg
+    ports:
+      - 8081:8080
+    depends_on:
+      - cloudsql-proxy-stg
+    networks:
+      - network_back_stg
+    environment:
+      - ENV=staging
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/credentials.json
+      - SERVICE_ACCOUNT=chat-staging@tt-ligla-stg.iam.gserviceaccount.com
+
+  cloudsql-proxy-stg:
+    image: gcr.io/cloudsql-docker/gce-proxy:1.19.1
+    user: root
+    platform: linux/amd64
+    command:
+      - "/cloud_sql_proxy"
+      - "-dir=/cloudsql"
+      - "-instances=${CLOUD_SQL_CONNECTION_NAME}"
+      - "-credential_file=/config/credentials.json"
+    volumes:
+      - ./secret/credentials.stg.json:/config/credentials.json:ro
+      - cloudsql_stg:/cloudsql
+    networks:
+      - network_back_stg
+
+volumes:
+  cloudsql_stg:
+  bff_node_modules_stg:
+  front_node_modules_stg:
+
+networks:
+  network_back_stg:

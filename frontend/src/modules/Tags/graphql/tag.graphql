@@ -1,0 +1,56 @@
+fragment tagFragment on Tag {
+  id
+  name
+  isActive
+  createdAt
+}
+
+query cursorPaginatedTags($take: Int, $cursorId: String, $cursorCreatedAt: DateTime) {
+  cursorPaginatedTags(take: $take, cursorId: $cursorId, cursorCreatedAt: $cursorCreatedAt) {
+    items {
+      ...tagFragment
+    }
+    hasMore
+    nextCursorId
+    nextCursorCreatedAt
+  }
+}
+
+query tags($skip: Int, $take: Int, $filter: FilterInput) {
+  tags(skip: $skip, take: $take, filter: $filter) {
+    items {
+      ...tagFragment
+    }
+    count
+  }
+}
+
+query tag($id: String!) {
+  tag(id: $id) {
+    ...tagFragment
+  }
+}
+
+mutation createTag($createTagInput: CreateTagInput!) {
+  createTag(createTagInput: $createTagInput) {
+    ...tagFragment
+  }
+}
+
+mutation updateTag($updateTagInput: UpdateTagInput!) {
+  updateTag(updateTagInput: $updateTagInput) {
+    ...tagFragment
+  }
+}
+
+mutation toggleTagStatus($id: String!) {
+  toggleTagStatus(id: $id) {
+    ...tagFragment
+  }
+}
+
+mutation disableTag($id: String!) {
+  disableTag(id: $id) {
+    ...tagFragment
+  }
+}

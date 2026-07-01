@@ -1,0 +1,86 @@
+{
+  "commonError": "An error occurred. Please try again later.",
+  "doesNotExist": "{{item}} does not exist",
+  "featureNotAvailable": "This feature is not available",
+  "searchNotFound": "Search results not found",
+  "memberFeedNotFound": "Member feed not found",
+  "surveyNotFound": "Survey not found",
+  "useDifferentEmail": "Please use a different email address",
+  "userAlreadyExists": "This user already exists",
+  "userHasBothOperatorAndManagerRoles": "The user has both operator and manager roles",
+  "emailAlreadyExists": "This email address has already been added to the system",
+  "emailAlreadyExistsInList": "This email address has already been added to the user list",
+  "emailTooLong": "Email address is too long",
+  "emailValid": "Please enter a valid email address",
+  "enterEmail": "Please enter an email address",
+  "enterName": "Please enter a name",
+  "enterType": "Please enter type",
+  "enterValue": "Please enter a value",
+  "valueTooLong": "Value exceeds character limit",
+  "enterPassword": "Please enter a password",
+  "fieldIsRequired": "Field is required",
+  "fieldMustBeNumber": "Field must be a number",
+  "nameMustContain": "Name must contain words separated by a single space",
+  "nameTooLong": "Exceeds character limit",
+  "nameAlreadyExists": "Name is already exists",
+  "numberMax": "Number must be less than or equal to ",
+  "numberMin": "Number must be greater than or equal to ",
+  "passwordAtLeast": "Password must be at least 6 characters",
+  "passwordContainLowercase": "Password must contain at least one lowercase letter",
+  "passwordContainNumber": "Password must contain at least one number",
+  "passwordContainSpecial": "Password must contain at least one special character",
+  "passwordContainUppercase": "Password must contain at least one uppercase letter",
+  "passwordTooLong": "Password is too long",
+  "passwordNotMatch": "Passwords do not match",
+  "passwordSameAsOld": "Password is same as current",
+  "selectRole": "Please select a role",
+  "useUnderScore": "Please use underscore instead of space",
+  "failedToSave": "Failed to save",
+  "failedToFetchRefreshAgain": "Failed to fetch! Please try refreshing again.",
+  "maxCharacterLimit": "String must contain at most {{limit}} character(s)",
+  "userNameMaxCharacterLimit": "Account name cannot exceed {{limit}} characters.",
+  "noteMaxCharacterLimit": "Note exceeds characters limit",
+  "onlySpaces": "The field cannot be empty or contain only spaces. Please provide a non-empty value.",
+  "invalidLiffId": "LIFF ID must only contain letters, digits, and hyphens (e.g. 1234567890-abcdefgh).",
+  "invalidCodeName": "Code name must contain only lowercase letters and underscores.",
+  "maxOperatorNumeric": "The maximum operator count must be a valid numeric value.",
+  "maxOperatorNotDecimal": "Decimal values are not allowed. Please enter a whole number.",
+  "maxOperatorPositive": "The maximum operator count must be a positive number.",
+  "maxOperatorMaxValueExceeded": "The maximum number of operators allowed has been exceeded.",
+  "organization": {
+    "notAllowed": "You do not have permission to access this organization",
+    "notFound": "Organization not found"
+  },
+  "operator": {
+    "notFound": "Operator not found"
+  },
+  "upload": {
+    "fileInvalid": "Unsupported file format.",
+    "fileTooLarge": "File is larger than max maximum file size."
+  },
+  "qrDownload": {
+    "noActiveOperators": "Cannot download: no active operators on current page",
+    "failed": "Failed to download file"
+  },
+  "failedToLoadMore": "Failed to load more data",
+  "failedToRefetchAgain": "Failed to refetch! Please try refreshing again.",
+  "notificationsBlocked": "Failed to enable notifications. Please enable notifications in your browser settings.",
+  "messageTooLong": "Message exceeds the character limit",
+  "chatReplySetting": {
+    "overlappingTimeranges": "You have overlapping ranges, please resolve them."
+  },
+  "chatAssignRules": {
+    "mustHaveFilterOrSubgroup": "At least one filter or subgroup is required",
+    "mustHaveTwoItems": "At least two item is required",
+    "selectAtLeastOneTeam": "Please select at least one team",
+    "filter": {
+      "mustHaveConditionOrSubgroup": "At least one condition or subgroup is required",
+      "enterField": "Please select a field",
+      "valueRequired": "Value is required for this condition",
+      "invalidRegexPattern": "Invalid regular expression pattern",
+      "valueTooLong": "Value is too long",
+      "maxInt32Exceeded": "Value cannot exceed 2,147,483,647",
+      "maxNestedDepthExceeded": "Maximum nesting depth of {{maxDepth}} has been exceeded"
+    }
+  }
+}

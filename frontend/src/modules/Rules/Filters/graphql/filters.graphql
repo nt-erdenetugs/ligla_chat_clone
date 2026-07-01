@@ -1,0 +1,130 @@
+fragment chatAssignFilterFragment on ChatAssignFilter {
+  id
+  name
+  targetTable
+  note
+  isActive
+  createdAt
+  updatedAt
+  rootConditionGroup {
+    ...conditionGroupFragmentLevel10
+  }
+}
+
+query chatAssignFilters($skip: Int, $take: Int, $filter: FilterInput) {
+  chatAssignFilters: chatAssignFiltersWithCount(filter: $filter, skip: $skip, take: $take) {
+    items {
+      ...chatAssignFilterFragment
+    }
+    count
+  }
+}
+
+query chatAssignFilter($id: String!) {
+  chatAssignFilter(id: $id) {
+    ...chatAssignFilterFragment
+  }
+}
+
+mutation createChatAssignFilter($createChatAssignFilterInput: CreateChatAssignFilterInput!) {
+  createChatAssignFilter(createChatAssignFilterInput: $createChatAssignFilterInput) {
+    ...chatAssignFilterFragment
+  }
+}
+
+mutation updateChatAssignFilter($updateChatAssignFilterInput: UpdateChatAssignFilterInput!) {
+  updateChatAssignFilter(updateChatAssignFilterInput: $updateChatAssignFilterInput) {
+    ...chatAssignFilterFragment
+  }
+}
+
+mutation deleteChatAssignFilter($id: String!) {
+  deleteChatAssignFilter(id: $id) {
+    id
+  }
+}
+
+# ---------- recursive-style fragments ----------
+fragment conditionGroupBaseFragment on ChatAssignConditionGroup {
+  logicalOperator
+  conditions {
+    field
+    operator
+    value
+    valueType
+    valueObjects {
+      id
+      name
+    }
+  }
+}
+
+fragment conditionGroupFragmentLevel1 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupBaseFragment
+  }
+}
+
+fragment conditionGroupFragmentLevel2 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupFragmentLevel1
+  }
+}
+
+fragment conditionGroupFragmentLevel3 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupFragmentLevel2
+  }
+}
+
+fragment conditionGroupFragmentLevel4 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupFragmentLevel3
+  }
+}
+
+fragment conditionGroupFragmentLevel5 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupFragmentLevel4
+  }
+}
+
+fragment conditionGroupFragmentLevel6 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupFragmentLevel5
+  }
+}
+
+fragment conditionGroupFragmentLevel7 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupFragmentLevel6
+  }
+}
+
+fragment conditionGroupFragmentLevel8 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupFragmentLevel7
+  }
+}
+
+fragment conditionGroupFragmentLevel9 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupFragmentLevel8
+  }
+}
+
+fragment conditionGroupFragmentLevel10 on ChatAssignConditionGroup {
+  ...conditionGroupBaseFragment
+  subGroups {
+    ...conditionGroupFragmentLevel9
+  }
+}

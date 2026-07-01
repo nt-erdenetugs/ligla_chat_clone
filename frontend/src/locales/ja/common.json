@@ -1,0 +1,173 @@
+{
+  "app": {
+    "title": "チャットシステム"
+  },
+  "email": "メール",
+  "password": "パスワード",
+  "login": "ログイン",
+  "loggingIn": "ログイン中...",
+  "loading": "読み込み中...",
+  "logout": "ログアウト",
+  "forgotPassword": "パスワードをお忘れの方はこちら",
+  "resetPassword": "パスワードをリセット",
+  "resetSuccess": "パスワードが正常に更新されました。新しいパスワードでログインできます。",
+  "initialLogin": "初回ログイン",
+  "confirmation": "確認",
+  "enterInput": "{{target}}を入力",
+  "systemAdministratorPortal": "システム管理者ポータル",
+  "currentEmailAddress": "メールアドレス",
+  "currentAccountName": "アカウント名",
+  "currentSenderName": "送信者名",
+  "notSpecified": "未設定",
+  "senderNameHint": "LINEのエンドユーザーへメッセージを送信する際に表示される名前です。",
+  "currentPassword": "パスワード",
+  "oldPassword": "現在のパスワード",
+  "enableNotifications": "通知を有効にする",
+  "notificationsPerDevice": "通知は、お使いの各デバイスで個別に設定するようになっています。",
+  "notificationsIOSnotPWADevice": "この機能はこのブラウザではご利用いただけません。ホーム画面に追加してください。",
+  "newPassword": "新しいパスワード",
+  "newPasswordForConfirmation": "新しいパスワード（確認用）",
+  "pleaseEnter": "入力してください",
+  "noOptions": "データがありません",
+  "favorites": "お気に入り",
+  "survey": "アンケート",
+  "store": "店舗",
+  "note": "注記",
+  "forgotYourPassword": {
+    "title": "パスワードをお忘れですか？",
+    "note": "アカウントに関連付けられているメールアドレスを入力してください。パスワードをリセットするためのリンクをお送りします。",
+    "sendResetLink": "パスワードをリセットするためのリンクをお送りします。メールをご確認ください。",
+    "returnToLogin": "ログインに戻る",
+    "loginAgain": "再度ログイン"
+  },
+  "info": {
+    "sureToLogout": "ログアウトしてもよろしいですか？",
+    "sureToDelete": "削除しますか？",
+    "sureToDisable": "本当に無効にしますか?",
+    "sureToRestore": "もとに戻しますか？",
+    "sureToCancelEdit": "編集中の内容は破棄されます。よろしいですか？",
+    "sureToChangeOperator": "オペレーターを変更しますか？",
+    "sureToChangeTeam": "チームの割り当てを変更しますか？",
+    "sureToDiscardMsg": "メッセージは破棄されます。よろしいですか?",
+    "sureToDeleteMsg": "メッセージは削除されます。よろしいですか？",
+    "sureToDiscardUpload": "アップロード中のファイルは破棄されます。よろしいですか？"
+  },
+  "sidebar": {
+    "inbox": "インボックス",
+    "users": "オペレーター管理",
+    "teams": "チーム管理",
+    "stores": "店舗一覧",
+    "organizations": "企業管理",
+    "openMenu": "開く",
+    "closeMenu": "閉じる",
+    "chat": "チャット",
+    "columnSettings": "表示項目設定",
+    "replySettings": "自動応答設定",
+    "chatAssignRules": "割り当てルール",
+    "management": "管理",
+    "database": "データベース",
+    "chatSettings": "チャット設定",
+    "logout": "ログアウト",
+    "accountSettings": "アカウント設定",
+    "language": "言語"
+  },
+  "actions": {
+    "ok": "OK",
+    "moreInfo": "詳細",
+    "save": "保存する",
+    "saving": "節約",
+    "new": "新規作成",
+    "cancel": "キャンセル",
+    "send": "送信",
+    "delete": "削除",
+    "disable": "無効にする",
+    "edit": "編集",
+    "add": "追加",
+    "addMore": "さらに追加",
+    "close": "閉じる",
+    "invite": "招待",
+    "restore": "もとに戻す",
+    "confirm": "確認",
+    "keep": "保存",
+    "start": "開始",
+    "end": "終了",
+    "tryAgain": "再試行する",
+    "downloadOperatorsQR": "オペレーターQRをダウンロード",
+    "upload": "アップロード",
+    "uploading": "アップロード中..."
+  },
+  "upload": {
+    "fileDetail": "現在のファイル: {{name}} - {{size}} バイト",
+    "supportedFileType": "対応ファイル形式: *.{{ext}}",
+    "maxSize": "最大ファイルサイズ: {{size}}",
+    "aspectRatio": "必要なアスペクト比: 1:1"
+  },
+  "datatableFilter": {
+    "refine": "絞り込む",
+    "search": "検索",
+    "reset": "リセット",
+    "apply": "適用",
+    "addFilter": "フィルターを追加",
+    "searchItem": "検索項目",
+    "searchBy": "検索",
+    "searchAllowed": "検索可能な列：",
+    "filters": "フィルター",
+    "value": "値",
+    "none": "なし",
+    "condition": "条件"
+  },
+  "user": {
+    "personalInfo": "個人情報",
+    "qrCode": "QRコード",
+    "shareUrl": "このリンクを共有してください。",
+    "copied": "リンクが正常にコピーされました。",
+    "copyFailed": "リンクをコピーできませんでした。もう一度お試しください。",
+    "notFoundQrUrl": "QR リンクの生成に失敗しました。管理者に問い合わせてください。",
+    "notificationsEnabled": "通知が有効になりました",
+    "notificationsDisabled": "通知が無効になりました",
+    "notificationsError": "通知の有効化に失敗しました。もう一度お試しください。"
+  },
+  "tooltip": {
+    "downloadOperatorsQRButton": "現在のページに表示されているアクティブなオペレーターのQRコードがダウンロードされます。"
+  },
+  "resetPasswordErrors": {
+    "missingTokenTitle": "リセットリンクがありません",
+    "missingTokenDescription": "リセットトークンが提供されていません。メールのリンクを使用するか、新しいパスワードリセットリンクをリクエストしてください。",
+    "invalidTokenTitle": "パスワードの再設定をお試しください",
+    "invalidTokenDescription": "パスワードリセットのリクエストの有効期限が切れているか、リンクがすでに使用されています。"
+  },
+  "initialLoginErrors": {
+    "missingTokenTitle": "アクティベーションリンクがありません",
+    "missingTokenDescription": "アクティベーショントークンが提供されていません。招待メールの完全なリンクを使用してください。",
+    "invalidTokenTitle": "アカウントのアクティベーションに失敗しました",
+    "invalidTokenDescription": "アカウントのアクティベーションリンクの有効期限が切れているか、すでに使用されています。新しい招待状については管理者にお問い合わせください。"
+  },
+  "logicalOperator": {
+    "and": "かつ",
+    "or": "または"
+  },
+  "maintenance": {
+    "title": "ただいまメンテナンス中です",
+    "description": "メンテナンスのために一時的にサービスを停止しています。\nご利用の皆様にはご迷惑をおかけしますが、メンテナンス終了までしばらくお待ちください。"
+  },
+  "errorFallback": {
+    "401": {
+      "title": "認証に失敗しました",
+      "description": "ログインが必要です。\nログイン後に再度お試しください。"
+    },
+    "403": {
+      "title": "アクセス権限がありません",
+      "description": "このページへのアクセスは許可されていません。"
+    },
+    "404": {
+      "title": "ページが見つかりません",
+      "description": "指定されたページが見つかりませんでした。"
+    },
+    "500": {
+      "title": "エラーが発生しました",
+      "description": "現在、一時的にご利用いただけません。\nしばらくしてから再度お試しください。"
+    },
+    "returnToHomePage": "ホームページに戻る"
+  },
+  "swNeedsRefresh": "新しいバージョンがあります。ページを更新してください。"
+}

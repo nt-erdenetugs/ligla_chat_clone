@@ -1,0 +1,55 @@
+fragment chatReplyScheduleFragment on ChatReplySchedule {
+  scheduleType
+  chatReplyScheduleCustomDates
+  chatReplyScheduleTimeRanges {
+    startTime
+    endTime
+    timeRangeType
+  }
+}
+
+fragment chatReplyMessageFragment on ChatReplySettingMessage {
+  timeRangeType
+  chatReplyMessageTemplate {
+    content
+    type
+    previewImageUrl
+    contentUrl
+  }
+}
+
+fragment chatReplySetting on ChatReplySetting {
+  id
+  isActive
+  updatedBy
+  chatReplySchedules {
+    ...chatReplyScheduleFragment
+  }
+  chatReplySettingMessages {
+    ...chatReplyMessageFragment
+  }
+}
+
+query chatReplySetting($inputOrganizationId: String) {
+  chatReplySetting(inputOrganizationId: $inputOrganizationId) {
+    ...chatReplySetting
+  }
+}
+
+mutation createChatReplySetting(
+  $createChatReplySettingInput: CreateChatReplySettingInput!
+  $inputOrganizationId: String
+) {
+  createChatReplySetting(
+    createChatReplySettingInput: $createChatReplySettingInput
+    inputOrganizationId: $inputOrganizationId
+  ) {
+    ...chatReplySetting
+  }
+}
+
+mutation updateChatReplySetting($updateChatReplySettingInput: UpdateChatReplySettingInput!) {
+  updateChatReplySetting(updateChatReplySettingInput: $updateChatReplySettingInput) {
+    ...chatReplySetting
+  }
+}

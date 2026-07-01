@@ -1,0 +1,25 @@
+fragment memberFeedColumnFragment on MemberFeedColumn {
+  name
+  alias
+  isEnabled
+}
+
+query memberFeedColumns {
+  memberFeedColumns {
+    ...memberFeedColumnFragment
+  }
+}
+
+query MemberFeeds($clientUserId: String) {
+  memberFeeds(clientUserId: $clientUserId) {
+    columnAlias
+    columnName
+    value
+  }
+}
+
+mutation updateMemberFeedSetting($updateMemberFeedSettingInput: UpdateMemberFeedSettingInput!) {
+  updateMemberFeedSetting(updateMemberFeedSettingInput: $updateMemberFeedSettingInput) {
+    ...memberFeedColumnFragment
+  }
+}

@@ -1,0 +1,12 @@
+FROM postgres:18-alpine3.23
+
+RUN apk add --no-cache --virtual .build-deps \
+      build-base \
+      git \
+      ca-certificates \
+      postgresql18-dev \
+ && git clone --depth 1 --branch v1.2-20250903 https://github.com/pgbigm/pg_bigm.git /tmp/pg_bigm \
+ && make -C /tmp/pg_bigm USE_PGXS=1 with_llvm=no PG_CONFIG=/usr/local/bin/pg_config \
+ && make -C /tmp/pg_bigm USE_PGXS=1 with_llvm=no PG_CONFIG=/usr/local/bin/pg_config install \
+ && rm -rf /tmp/pg_bigm \
+ && apk del .build-deps

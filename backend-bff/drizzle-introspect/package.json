@@ -1,0 +1,23 @@
+{
+  "name": "backend-bff-drizzle-introspect",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "introspect": "node ./run-introspection.js"
+  },
+  "dependencies": {
+    "@google-cloud/secret-manager": "^6.1.1",
+    "@google-cloud/storage": "^7.19.0",
+    "dotenv": "^17.4.1",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.20.0"
+  },
+  "overrides": {
+    "@tootallnate/once": "3.0.1",
+    "esbuild": "0.25.12",
+    "http-proxy-agent": "7.0.2",
+    "retry-request": "8.0.2",
+    "teeny-request": "10.1.2"
+  }
+}

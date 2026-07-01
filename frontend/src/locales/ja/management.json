@@ -1,0 +1,251 @@
+{
+  "status": "ステータス",
+  "active": "有効",
+  "inactive": "無効",
+  "locked": "ロック",
+  "pending": "保留",
+  "createdDate": "作成日",
+  "note": "管理用メモ",
+  "subtitle": {
+    "details": "詳細",
+    "edit": "編集",
+    "create": "新規作成"
+  },
+  "users": {
+    "title": "オペレーター一覧",
+    "formTitle": "ユーザー",
+    "profile": "プロフィール",
+    "name": "名前",
+    "senderName": "送信者名",
+    "email": "メールアドレス",
+    "role": "ロール",
+    "teams": "チーム",
+    "editUser": "ユーザーを編集",
+    "unlockUser": "ユーザーのロックを解除する",
+    "reInvite": "ユーザーを再招待",
+    "activate": "ユーザーを有効化",
+    "deactivate": "ユーザーを無効化",
+    "createNewUser": "新しいユーザーを作成",
+    "selectRoles": "役割を選択",
+    "enterName": "名前を入力",
+    "noTargetUsers": "対象のオペレーターがいません",
+    "assignAtLeastOneTeam": "オペレーターは、少なくとも 1 つのチームまたは既定のチームに割り当てられている必要があります。",
+    "subtitle": "オペレーター数: {{operatorCount}}/{{maxOperatorCount}}"
+  },
+  "roles": {
+    "admin": "管理者",
+    "adminOperator": "管理者オペレーター",
+    "manager": "マネージャー",
+    "managerOperator": "マネージャーオペレーター",
+    "operator": "オペレーター"
+  },
+  "teams": {
+    "title": "チーム",
+    "formTitle": "チーム",
+    "name": "名前",
+    "default": "(デフォルト)",
+    "managers": "マネージャー",
+    "operators": "オペレーター",
+    "numOfOperators": "オペレーター数",
+    "stores": "店舗",
+    "createNewTeam": "新しいチームを作成",
+    "enterName": "名前を入力",
+    "selectManagers": "マネージャーを選択",
+    "noManagersText": "対応可能なマネージャーがいません",
+    "selectOperators": "オペレーターを選択",
+    "noOperatorsText": "対応可能なオペレーターがいません",
+    "selectStores": "店舗を選択",
+    "noStoresText": "店舗がありません",
+    "selectTeams": "チームを選択",
+    "createTeam": "チームを作成",
+    "editTeam": "チームを編集",
+    "noTargetTeams": "対象のチームがありません",
+    "selectTeamsTooltip": "チームはチームページを通じて変更する必要があります",
+    "helper": {
+      "cantChange": "デフォルトのチームまたは削除されたチームの名前を変更することはできません",
+      "noPermissionToSelectManagers": "マネージャーを選択する権限がありません",
+      "noPermissionToSelectStores": "店舗を選択する権限がない"
+    },
+    "teamSetting": {
+      "teamChatSetting": {
+        "title": "チャット設定",
+        "viewAllChatsEnabled": {
+          "options": {
+            "start": "共有",
+            "end": "非公開"
+          }
+        }
+      }
+    }
+  },
+  "stores": {
+    "title": "店舗",
+    "formTitle": "店舗",
+    "storeID": "店舗ID",
+    "name": "店舗名",
+    "liglaStoreID": "Ligla店舗ID",
+    "locationArea": "所在エリア",
+    "facilityType": "施設タイプ",
+    "displayPeriod": "店舗表示期間",
+    "note": "管理用メモ",
+    "noTargetStores": "対象の店舗がありません"
+  },
+  "tags": {
+    "title": "タグ設定",
+    "formTitle": "タグ",
+    "name": "名前",
+    "createNewTag": "新しいタグを作成",
+    "editTag": "タグ",
+    "noTargetTags": "ターゲットタグなし"
+  },
+  "organizations": {
+    "title": "企業管理",
+    "formTitle": "企業管理",
+    "companyCodeName": "クライアントコード",
+    "apiKey": "APIキー",
+    "invalidApiKey": "無効なAPIキー",
+    "companyName": "サービス名",
+    "companyAdministratorEmail": "アカウント管理者メールアドレス",
+    "activeOperators": "アクティブオペレーター数",
+    "operatorLimit": "オペレーター上限数",
+    "loginLiffId": "メッセージング LIFF ID",
+    "fileUploadLiffId": "アップロードアプリのLIFF ID",
+    "notes": "備考",
+    "createNewOrganization": "企業作成",
+    "editOrganization": "企業編集",
+    "maxOperators": "オペレーター最大数",
+    "defaultIs": "デフォルトは",
+    "max": "最大",
+    "noTargetOrganization": "企業を選択してください",
+    "addCompanyAdministratorEmail": "管理者メールアドレスを追加",
+    "teamSettings": "チーム設定",
+    "userInvitationPending": "ユーザー招待保留中"
+  },
+  "attributes": {
+    "title": "属性設定",
+    "formTitle": "属性",
+    "name": "名前",
+    "createAttribute": "新しい属性を作成",
+    "editAttribute": "属性",
+    "noTargetAttributes": "対象の属性がありません",
+    "enableAttributeEncryption": "暗号化を有効にする",
+    "encryptionLockedTooltip": "属性の作成後は暗号化設定を変更できません",
+    "enterType": "タイプを入力",
+    "isEncrypted": "暗号化済み",
+    "type": "タイプ",
+    "selectOptions": "選択肢",
+    "value": "値",
+    "label": "ラベル",
+    "addOption": "選択肢を追加"
+  },
+  "hypervisor": {
+    "title": "ハイパーバイザー"
+  },
+  "toggle": {
+    "title": "ステータスの切り替え",
+    "action": "切り替える",
+    "switchingToActive": "ステータスを有効に切り替えますか？",
+    "switchingToInactive": "ステータスを無効に切り替えますか？"
+  },
+  "filters": "フィルター",
+  "clearAll": "すべてクリア",
+  "rowsPerPage": "表示件数",
+  "items": "件",
+  "columnSettings": {
+    "column": {
+      "show": "項目表示",
+      "name": "カラム",
+      "alias": "カラム名"
+    },
+    "title": "表示項目設定"
+  },
+  "memberFeedColumns": {
+    "title": "会員フィード設定",
+    "formTitle": "会員フィード設定"
+  },
+  "surveyColumns": {
+    "title": "アンケート設定",
+    "formTitle": "アンケート設定"
+  },
+  "chatAssignRules": {
+    "title": "割り当てルール",
+    "formTitle": "割り当てルール",
+    "appliedTeams": "適用チーム",
+    "noTargetRules": "対象のルールがありません",
+    "filterManagements": "フィルター管理",
+    "name": "名前",
+    "content": "内容",
+    "addGroup": "グループを追加",
+    "addInnerGroup": "グループを追加",
+    "createFilter": "フィルターを作成",
+    "dropFilterOrCreate": "フィルターをドロップ\nもしくは「フィルターを作成」をクリックしてください"
+  },
+  "chatAssignFilters": {
+    "title": "フィルター",
+    "formTitle": "フィルター",
+    "noTargetFilters": "対象フィルターがありません",
+    "conditionsWrong": "条件を確認し、必須項目を入力してください",
+    "searchByFilter": "フィルターで検索",
+    "noFiltersFound": "フィルターが見つかりません",
+    "categories": "カテゴリ",
+    "allCategories": "すべてのカテゴリ",
+    "store": "店舗",
+    "survey": "アンケート",
+    "name": "名前",
+    "targetTable": "対象テーブル",
+    "filterBuilder": {
+      "conditions": "条件",
+      "selectColumn": "カラムを選択",
+      "selectOperator": "条件を選択",
+      "column": "カラム",
+      "operator": "条件",
+      "value": "値",
+      "dateValue": "日付",
+      "enterValue": "値を入力",
+      "enterNumberValue": "数値を入力",
+      "enterDateValue": "日付を入力",
+      "enterValuesSeparatedBySpace": "スペース区切りで値を入力",
+      "addCondition": "条件を追加",
+      "operators": {
+        "equal": "等しい",
+        "notEqual": "等しくない",
+        "include": "含む",
+        "notInclude": "含まない",
+        "regex": "正規表現",
+        "null": "値が空",
+        "notNull": "値が空でない",
+        "greaterThan": "より大きい",
+        "lessThan": "より小さい",
+        "greaterThanOrEqual": "以上",
+        "lessThanOrEqual": "以下",
+        "valuesMatchAny": "いずれかの値に一致（スペース区切り）",
+        "valuesDoNotMatchAny": "いずれの値にも不一致（スペース区切り）"
+      },
+      "sentences": {
+        "favoriteStore": {
+          "equals": "選択されたお気に入り店舗が{{value}}と等しい",
+          "notEquals": "選択されたお気に入り店舗が{{value}}と等しくない",
+          "matchesAny": "選択されたお気に入り店舗が{{value}}のいずれかである",
+          "doesNotMatchAny": "選択されたお気に入り店舗が{{value}}のいずれでもない",
+          "isEmpty": "お気に入り店舗が選択されていない",
+          "isNotEmpty": "お気に入り店舗が選択されている"
+        },
+        "survey": {
+          "equals": "アンケート{{field}}の値が{{value}}と等しい",
+          "notEquals": "アンケート{{field}}の値が{{value}}と等しくない",
+          "includes": "アンケート{{field}}の値が{{value}}を含む",
+          "doesNotInclude": "アンケート{{field}}の値が{{value}}を含まない",
+          "matchesPattern": "アンケート{{field}}の値がパターン{{value}}に一致する",
+          "greaterThan": "アンケート{{field}}の値が{{value}}より大きい",
+          "lessThan": "アンケート{{field}}の値が{{value}}より小さい",
+          "greaterThanOrEquals": "アンケート{{field}}の値が{{value}}以降である",
+          "lessThanOrEquals": "アンケート{{field}}の値が{{value}}以前である",
+          "matchesAny": "アンケート{{field}}の値が{{value}}のいずれかである",
+          "doesNotMatchAny": "アンケート{{field}}の値が{{value}}のいずれでもない",
+          "isEmpty": "アンケート{{field}}の値が空である",
+          "isNotEmpty": "アンケート{{field}}に何らかの値が設定されている"
+        }
+      }
+    }
+  }
+}

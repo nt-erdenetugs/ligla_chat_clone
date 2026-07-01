@@ -1,0 +1,197 @@
+version: 2
+updates:
+  # 1) Backend core (Python/Poetry)
+  - package-ecosystem: pip
+    directory: "/backend-core"
+    target-branch: "develop"
+    schedule:
+      interval: weekly
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 2
+    rebase-strategy: auto
+    versioning-strategy: increase-if-necessary
+    labels:
+      - dependencies
+      - core
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+    groups:
+      # Group minor and patch updates
+      minor-updates:
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
+      # Group major updates
+      major-updates:
+        update-types:
+          - "major"
+        patterns:
+          - "*"
+
+  # 2) Backend BFF (NestJS/npm)
+  - package-ecosystem: npm
+    directory: "/backend-bff"
+    target-branch: "develop"
+    schedule:
+      interval: weekly
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 2
+    rebase-strategy: auto
+    versioning-strategy: increase-if-necessary
+    labels:
+      - dependencies
+      - bff
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+    groups:
+      # Group minor and patch updates
+      minor-updates:
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
+      # Group major updates
+      major-updates:
+        update-types:
+          - "major"
+        patterns:
+          - "*"
+
+  # 3) Frontend (React/npm)
+  - package-ecosystem: npm
+    directory: "/frontend"
+    target-branch: "develop"
+    schedule:
+      interval: weekly
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 2
+    rebase-strategy: auto
+    versioning-strategy: increase-if-necessary
+    labels:
+      - dependencies
+      - front
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+    groups:
+      # Group minor and patch updates
+      minor-updates:
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
+      # Group major updates
+      major-updates:
+        update-types:
+          - "major"
+        patterns:
+          - "*"
+
+  # 4) Docker images
+  - package-ecosystem: docker
+    directory: "/backend-core"
+    target-branch: "develop"
+    schedule:
+      interval: weekly
+      day: "tuesday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 2
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - docker
+      - core
+    commit-message:
+      prefix: "chore(docker)"
+      include: scope
+    groups:
+      # Group minor and patch updates
+      minor-updates:
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
+      # Group major updates
+      major-updates:
+        update-types:
+          - "major"
+        patterns:
+          - "*"
+
+  - package-ecosystem: docker
+    directory: "/backend-bff"
+    target-branch: "develop"
+    schedule:
+      interval: weekly
+      day: "tuesday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 2
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - docker
+      - bff
+    commit-message:
+      prefix: "chore(docker)"
+      include: scope
+    groups:
+      # Group minor and patch updates
+      minor-updates:
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
+      # Group major updates
+      major-updates:
+        update-types:
+          - "major"
+        patterns:
+          - "*"
+
+  - package-ecosystem: docker
+    directory: "/frontend"
+    target-branch: "develop"
+    schedule:
+      interval: weekly
+      day: "tuesday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 2
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - docker
+      - ui
+    commit-message:
+      prefix: "chore(docker)"
+      include: scope
+    groups:
+      # Group minor and patch updates
+      minor-updates:
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
+      # Group major updates
+      major-updates:
+        update-types:
+          - "major"
+        patterns:
+          - "*"

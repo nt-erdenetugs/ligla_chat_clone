@@ -1,0 +1,48 @@
+fragment storeFragment on Store {
+  id
+  name
+  isActive
+  liglaStoreId
+  areaName
+  typeName
+  note
+  startsAt
+  endsAt
+  createdAt
+}
+
+query store($id: String!) {
+  store(id: $id) {
+    ...storeFragment
+  }
+}
+
+query storesInfiniteScroll(
+  $organizationId: String
+  $cursorId: String
+  $cursorCreatedAt: DateTime
+  $take: Int
+) {
+  storesCursor(
+    inputOrganizationId: $organizationId
+    cursorId: $cursorId
+    cursorCreatedAt: $cursorCreatedAt
+    take: $take
+  ) {
+    items {
+      ...storeFragment
+    }
+    hasMore
+    nextCursorId
+    nextCursorCreatedAt
+  }
+}
+
+query stores($skip: Int, $take: Int, $filter: FilterInput) {
+  stores(skip: $skip, take: $take, filter: $filter) {
+    items {
+      ...storeFragment
+    }
+    count
+  }
+}

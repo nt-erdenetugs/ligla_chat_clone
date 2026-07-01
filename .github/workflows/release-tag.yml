@@ -1,0 +1,103 @@
+name: Release Tag
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-tag
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate tag and release notes
+        id: release
+        run: |
+          set -euo pipefail
+
+          TAG="v$(date -u +%Y.%m.%d-%H%M%S)"
+
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --oneline --no-merges --max-count=100)
+          else
+            COMMITS=$(git log "$LAST_TAG"..HEAD --oneline --no-merges)
+          fi
+
+          if [ -z "$COMMITS" ]; then
+            echo "No commits since last tag. Skipping release."
+            exit 0
+          fi
+
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+          FEATURES=""
+          BUGFIXES=""
+          REFACTORING=""
+          PERF=""
+          DOCS=""
+          TESTS=""
+          INTERNAL=""
+
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            MSG="${line#* }"
+
+            PR_REF=""
+            if [[ "$MSG" =~ \(#([0-9]+)\)$ ]]; then
+              PR_REF=" (#${BASH_REMATCH[1]})"
+              MSG="${MSG% (#*)}"
+            fi
+
+            CLEAN="${MSG#*: }"
+            ENTRY="- ${CLEAN}${PR_REF}"
+
+            case "$MSG" in
+              feat:*|feat\(*)         FEATURES+="$ENTRY"$'\n' ;;
+              fix:*|fix\(*|hotfix:*|hotfix\(*) BUGFIXES+="$ENTRY"$'\n' ;;
+              refactor:*|refactor\(*) REFACTORING+="$ENTRY"$'\n' ;;
+              perf:*|perf\(*)         PERF+="$ENTRY"$'\n' ;;
+              docs:*|docs\(*)         DOCS+="$ENTRY"$'\n' ;;
+              test:*|test\(*)         TESTS+="$ENTRY"$'\n' ;;
+              chore:*|chore\(*|ci:*|ci\(*|build:*|build\(*|revert:*|revert\(*|style:*|style\(*) INTERNAL+="$ENTRY"$'\n' ;;
+              *)                      INTERNAL+="- ${MSG}${PR_REF}"$'\n' ;;
+            esac
+          done <<< "$COMMITS"
+
+          BODY="## $TAG — $(date -u +%Y-%m-%d)"$'\n\n'
+          [ -n "$FEATURES" ]    && BODY+="### Features"$'\n'"$FEATURES"$'\n'
+          [ -n "$BUGFIXES" ]    && BODY+="### Bug Fixes"$'\n'"$BUGFIXES"$'\n'
+          [ -n "$REFACTORING" ] && BODY+="### Refactoring"$'\n'"$REFACTORING"$'\n'
+          [ -n "$PERF" ]        && BODY+="### Performance"$'\n'"$PERF"$'\n'
+          [ -n "$DOCS" ]        && BODY+="### Documentation"$'\n'"$DOCS"$'\n'
+          [ -n "$TESTS" ]       && BODY+="### Tests"$'\n'"$TESTS"$'\n'
+          [ -n "$INTERNAL" ]    && BODY+="### Internal"$'\n'"$INTERNAL"$'\n'
+          if [ -n "$LAST_TAG" ]; then
+            BODY+="**Full Changelog**: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/compare/${LAST_TAG}...${TAG}"$'\n'
+          fi
+
+          echo "$BODY" > release-notes.md
+
+      - name: Create tag and release
+        if: steps.release.outputs.tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" -m "Release $TAG"
+          git push origin "$TAG"
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --notes-file release-notes.md

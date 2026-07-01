@@ -1,0 +1,171 @@
+{
+  "sentMedia": "メディアを送信しました",
+  "unassigned": "未アサイン",
+  "messages": "メッセージ",
+  "assignedToMe": "自分が担当中",
+  "unknown": "不明",
+  "noChatSelected": "チャットが選択されていません。",
+  "noMessagesInThisChat": "このチャットには会話がありません。",
+  "noChatList": "インボックスにチャットはありません",
+  "youDontHavePermission": "このユーザーにメッセージを送信する権限がありません。",
+  "blockedByUser": "このチャットはブロックされているため、メッセージを送信できません。",
+  "enterMessage": "メッセージを入力し、Ctrl/Cmd + Enter で送信してください。",
+  "enterMessageOnMobile": "メッセージを入力してください",
+  "selectTeamsOperators": "チームとオペレーターを選択",
+  "edited": "編集",
+  "msgCantBeEmpty": "メッセージは空にはできません。",
+  "msgExceedsCharLimit": "メッセージが文字数制限を超えています。",
+  "errorWhileSendingMsg": "メッセージの送信中に予期しないエラーが発生しました。",
+  "cantSendMsgToCompletedChat": "完了したチャットではメッセージを送信できません。",
+  "youHaveNewMessage": "新しいメッセージがあります",
+  "sendingFailed": "送信できませんでした",
+  "unassignedChatCount": "未割り当てのチャット数",
+  "sending": "送信中…",
+  "retrying": "再試行中…",
+  "failedToSend": "送信に失敗しました!",
+  "videoMessage": "動画メッセージ",
+  "audioMessage": "音声メッセージ",
+  "imageMessage": "画像を送信しました",
+  "fileMessage": "ファイルメッセージ",
+  "locationMessage": "位置情報メッセージ",
+  "stickerMessage": "スタンプメッセージ",
+  "unsupportedMessage": "未対応のメッセージタイプ",
+  "messageUnsent": "このメッセージは取り消されました",
+  "videoNotAccessible": "動画の内容は現在アクセスできません。この機能はすぐに利用できるようになります。",
+  "chatInfo": "チャット情報",
+  "action": {
+    "send": "送信",
+    "cancel": "キャンセル",
+    "chatList": {
+      "open": "チャットを開く",
+      "close": "チャットを閉じる"
+    },
+    "chatInfo": {
+      "open": "情報を開く",
+      "close": "情報を閉じる"
+    }
+  },
+  "status": {
+    "title": "ステータス",
+    "pending": "未対応",
+    "addressing": "対応中",
+    "done": "完了"
+  },
+  "chatAttributes": {
+    "attributes": "属性管理",
+    "noList": "属性が空です"
+  },
+  "chatFeeds": {
+    "memberInfo": "会員フィード",
+    "memberId": "会員ID",
+    "noList": "会員フィードがありません"
+  },
+  "chatSurveys": {
+    "noList": "アンケートがありません"
+  },
+  "chatTags": {
+    "tags": "タグ",
+    "enterTagValue": "タグ値を入力。",
+    "noOptionsText": "オプションが見つかりません"
+  },
+  "chatNotes": {
+    "notes": "ノート",
+    "enterNoteValue": "ノート値を入力。",
+    "noteValueRequired": "ノート値は必須です。",
+    "noteValueTooLong": "ノート値が長すぎます。",
+    "addedBy": "追加者",
+    "editedBy": "最終編集者"
+  },
+  "chatSurvey": {
+    "surveyInfo": "アンケート",
+    "noList": "ユーザーのアンケートが見つかりません"
+  },
+  "activity": {
+    "chatStarted": "チャットを開始しました",
+    "chatEnded": "チャットが終了しました",
+    "sessionTimeout": "チャットセッションがタイムアウトしました",
+    "userAdded": "ユーザーが登録しました",
+    "userBlocked": "ユーザーがあなたをブロックしました",
+    "userUnblocked": "ユーザーからのブロックが解除されました",
+    "userFollowed": "ユーザーがアカウントをフォローしました",
+    "newMessages": "新しいメッセージ",
+    "statusChangedByUser": "{{actorUserName}}がステータスを「{{status}}」に変更しました",
+    "statusChangedBySystem": "チャットシステムがステータスを「{{status}}」に変更しました",
+    "assignedUserChangedByUser": "{{actorUserName}}が「{{assignedUserName}}」を割り当てました",
+    "assignedUserChangedBySystem": "チャットシステムが「{{assignedUserName}}」に割り当てました",
+    "teamAssignedByUser": "{{actorUserName}}に割り当てられたチーム「{{teamName}}」",
+    "teamAssignedBySystem": "チャットシステムが割り当てたチーム{{teamName}}」",
+    "teamUnassigned": "{{actorUserName}}未割り当てのチーム「{{teamName}}」",
+    "unavailable": "利用できないアクティビティログ"
+  },
+  "chatReplySetting": {
+    "title": "チャット自動応答設定",
+    "status": "応答時間を利用",
+    "useHolidaysTitle": "祝日",
+    "useHolidaysDesc": "祝日の応答時間を設定",
+    "useCustomDatesTitle": "指定日",
+    "useCustomDatesDesc": "指定日の応答の設定",
+    "selectCustomDates": "指定日を選択",
+    "selectedCustomDates": "選択日",
+    "startDate": "開始日",
+    "endDate": "終了日",
+    "messageTooLong": "メッセージが長すぎます",
+    "activeTimeMessage": {
+      "label": "期間内",
+      "placeholder": "応答テキスト例"
+    },
+    "defaultMessage": {
+      "label": "期間外",
+      "placeholder": "営業時間終了しましたため…"
+    },
+    "scheduleLabel": {
+      "MONDAY": "月",
+      "TUESDAY": "火",
+      "WEDNESDAY": "水",
+      "THURSDAY": "木",
+      "FRIDAY": "金",
+      "SATURDAY": "土",
+      "SUNDAY": "日",
+      "HOLIDAYS": "祝日",
+      "CUSTOM_DATE": "指定日"
+    },
+    "scheduleFullLabel": {
+      "MONDAY": "月曜日",
+      "TUESDAY": "火曜日",
+      "WEDNESDAY": "水曜日",
+      "THURSDAY": "木曜日",
+      "FRIDAY": "金曜日",
+      "SATURDAY": "土曜日",
+      "SUNDAY": "日曜日",
+      "HOLIDAYS": "祝日",
+      "CUSTOM_DATE": "指定日"
+    },
+    "timeRangePicker": {
+      "completeLastRangeToAdd": "最後の時間範囲を入力してください",
+      "completeAllRangesToSave": "すべての時間範囲を入力してください"
+    }
+  },
+  "fileUpload": {
+    "confirmDelete": "このファイルを削除してもよろしいですか？",
+    "virusDetected": "ウイルスが検出されました",
+    "virusScanPending": "ウイルススキャン待機中",
+    "download": "ダウンロード",
+    "delete": "削除",
+    "upload": "アップロード",
+    "uploadFile": "ファイルアップローダー",
+    "attachFile": "ファイルを追加",
+    "viewUploadedFiles": "ファイル一覧を表示",
+    "shareUploadLink": "アップロードリンクを共有",
+    "uploading": "アップロード中...",
+    "uploadComplete": "ファイルがアップロードされました",
+    "uploaderOperator": "送信者: {{name}}",
+    "uploaderEndUser": "送信者: {{name}}",
+    "headerTitle": "ファイル一覧",
+    "pageTitle": "ファイル共有 アプリ",
+    "noFilesUploadedYet": "ファイルはありません",
+    "loadError": "ファイルの読み込みに失敗しました",
+    "loginToUpload": "ログイン",
+    "dropTitle": "ファイルをここにドロップ",
+    "dropUploading": "アップロード中…"
+  }
+}

@@ -1,0 +1,112 @@
+fragment teamBaseFragment on BaseTeam {
+  id
+  name
+  createdAt
+}
+
+fragment teamFragment on Team {
+  id
+  name
+  managers {
+    ...userFragment
+  }
+  operators {
+    ...userFragment
+  }
+  stores {
+    ...storeFragment
+  }
+  teamSetting {
+    ...teamSettingFragment
+  }
+  isActive
+  isDefault
+  createdAt
+}
+
+fragment teamSettingFragment on TeamSetting {
+  id
+  teamId
+  teamChatSetting {
+    id
+    teamSettingId
+    viewAllChatsEnabled
+  }
+}
+
+fragment selectabeTeamFragment on SelectableTeam {
+  id
+  name
+  isDefault
+}
+
+query team($id: String!, $organizationId: String) {
+  team(id: $id, inputOrganizationId: $organizationId) {
+    ...teamFragment
+  }
+}
+
+query teams {
+  teams {
+    items {
+      ...teamFragment
+    }
+    count
+  }
+}
+
+query paginatedTeams($skip: Int, $take: Int, $organizationId: String, $filter: FilterInput) {
+  teams(skip: $skip, take: $take, inputOrganizationId: $organizationId, filter: $filter) {
+    items {
+      ...teamFragment
+    }
+    count
+  }
+}
+
+query teamsInChat($chatId: String!) {
+  teamsInChat(chatId: $chatId) {
+    id
+    name
+    isDefault
+    operators {
+      ...userFragment
+    }
+  }
+}
+
+query selectableTeams {
+  selectableTeams {
+    ...selectabeTeamFragment
+  }
+}
+
+query selectableTeamsForChatFilter {
+  selectableTeamsForChatFilter {
+    ...selectabeTeamFragment
+  }
+}
+
+mutation createTeam($createTeamInput: CreateTeamInput!, $organizationId: String) {
+  createTeam(createTeamInput: $createTeamInput, inputOrganizationId: $organizationId) {
+    ...teamFragment
+  }
+}
+
+mutation updateTeam($updateTeamInput: UpdateTeamInput!, $organizationId: String) {
+  updateTeam(updateTeamInput: $updateTeamInput, inputOrganizationId: $organizationId) {
+    ...teamFragment
+  }
+}
+
+mutation toggleTeamStatus($id: String!, $organizationId: String) {
+  toggleTeamStatus(id: $id, inputOrganizationId: $organizationId) {
+    ...teamFragment
+  }
+}
+
+mutation disableTeam($disableTeamId: String!, $organizationId: String) {
+  disableTeam(id: $disableTeamId, inputOrganizationId: $organizationId) {
+    ...teamFragment
+  }
+}

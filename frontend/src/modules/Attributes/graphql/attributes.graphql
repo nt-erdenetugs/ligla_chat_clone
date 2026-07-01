@@ -1,0 +1,81 @@
+fragment attributeFragment on Attribute {
+  id
+  name
+  selectOption {
+    id
+    value
+    label
+  }
+  type
+  isActive
+  isEncryptionEnabled
+  createdAt
+  chatId
+}
+
+fragment chatAttributeValueFragment on AttributeValue {
+  id
+  value
+  chatId
+  attributeId
+  userId
+  user {
+    id
+    displayName
+  }
+  createdAt
+}
+
+query attribute($id: String!) {
+  attribute(id: $id) {
+    ...attributeFragment
+  }
+}
+
+query attributes {
+  attributes {
+    items {
+      ...attributeFragment
+    }
+    count
+  }
+}
+
+query paginatedAttributes($skip: Int, $take: Int, $filter: FilterInput) {
+  attributes(skip: $skip, take: $take, filter: $filter) {
+    items {
+      ...attributeFragment
+    }
+    count
+  }
+}
+
+mutation createAttribute($createAttributeInput: CreateAttributeInput!) {
+  createAttribute(createAttributeInput: $createAttributeInput) {
+    ...attributeFragment
+  }
+}
+
+mutation updateAttribute($updateAttributeInput: UpdateAttributeInput!) {
+  updateAttribute(updateAttributeInput: $updateAttributeInput) {
+    ...attributeFragment
+  }
+}
+
+mutation toggleAttributeStatus($id: String!) {
+  toggleAttributeStatus(id: $id) {
+    ...attributeFragment
+  }
+}
+
+mutation disableAttribute($id: String!) {
+  disableAttribute(id: $id) {
+    ...attributeFragment
+  }
+}
+
+mutation fillChatAttributeValue($createChatAttributeValueInput: CreateChatAttributeValueInput!) {
+  fillChatAttributeValue(createChatAttributeValueInput: $createChatAttributeValueInput) {
+    ...chatAttributeValueFragment
+  }
+}

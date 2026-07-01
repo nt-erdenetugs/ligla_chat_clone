@@ -1,0 +1,17 @@
+{
+  "chat": {
+    "eventSentToSSE": "SSE クライアントにイベントが送信されました：{chatId}",
+    "anonymous": "匿名",
+    "sentMedia": "メディアを送信しました",
+    "sentMessage": "メッセージを送信しました",
+    "startedChat": "チャットを開始しました",
+    "endedChat":      "チャットセッションが終了しました",
+    "changedStatus":  "{actor}がステータスを「{newStatus}」に変更しました",
+    "status": {
+      "pending": "未対応",
+      "addressing": "対応中",
+      "done": "完了"
+    },
+    "userUnblocked":  "会話のブロックを解除しました"
+  }
+}

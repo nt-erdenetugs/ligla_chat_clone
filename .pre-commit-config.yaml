@@ -1,0 +1,64 @@
+# Pre-commit configuration for Ligla Chat
+# Team-wide configuration that automatically sets up linting for all developers
+# This uses Docker-based linting to ensure consistency across environments
+#
+# Usage:
+#   make setup-precommit     # Install hooks
+#   make precommit-run       # Run manually on all files
+#   git commit --no-verify   # Skip hooks for emergency commits
+
+repos:
+  # Quick syntax validation hooks (run first - faster than Docker)
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-json
+        name: Check JSON syntax
+      - id: check-yaml
+        name: Check YAML syntax
+        args: ['--unsafe']  # Allow custom YAML tags
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+      - id: check-case-conflict
+        name: Check for case conflicts
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+        args: ['--markdown-linebreak-ext=md']
+      - id: end-of-file-fixer
+        name: Fix end of files
+      - id: check-added-large-files
+        name: Check for large files
+        args: ['--maxkb=5000']
+      - id: mixed-line-ending
+        name: Check mixed line endings
+        args: ['--fix=lf']
+
+  # Docker-based linting using Makefile commands
+  - repo: local
+    hooks:
+      # Backend-core Python linting (order matters: format -> imports -> lint)
+      - id: backend-core-lint
+        name: Black (backend-core)
+        entry: make back-lint
+        language: system
+        files: ^backend-core/.*\.py$
+        pass_filenames: false
+        stages: [pre-commit]
+
+      # Frontend TypeScript/JavaScript linting
+      - id: frontend-eslint
+        name: ESLint (frontend)
+        entry: make front-eslint
+        language: system
+        files: ^frontend/.*\.(js|jsx|ts|tsx)$
+        pass_filenames: false
+        stages: [pre-commit]
+
+      # Backend-BFF TypeScript linting
+      - id: backend-bff-eslint
+        name: ESLint (backend-bff)
+        entry: make bff-eslint
+        language: system
+        files: ^backend-bff/.*\.(js|ts)$
+        pass_filenames: false
+        stages: [pre-commit]

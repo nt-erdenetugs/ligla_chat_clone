@@ -1,0 +1,30 @@
+mutation login($loginInput: LoginInput!) {
+  login(loginInput: $loginInput) {
+    accessToken
+  }
+}
+
+mutation loginToHypervisor($loginInput: LoginInput!) {
+  loginToHypervisor(loginInput: $loginInput) {
+    accessToken
+  }
+}
+
+mutation resetPasswordByToken($resetPasswordByTokenInput: ResetPasswordByTokenInput!) {
+  resetPasswordByToken(resetPasswordByTokenInput: $resetPasswordByTokenInput) {
+    success
+    warning
+  }
+}
+
+mutation requestPasswordReset($email: String!) {
+  requestPasswordReset(email: $email)
+}
+
+mutation requestReInvite($email: String!) {
+  requestReInvite(email: $email)
+}
+
+query verifyPasswordResetToken($token: String!) {
+  verifyPasswordResetToken(token: $token)
+}

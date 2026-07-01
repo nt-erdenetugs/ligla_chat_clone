@@ -1,0 +1,25 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": "unit/.*\\.spec\\.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^~/(.*)$": "<rootDir>/../src/$1",
+    "^@/(.*)$": "<rootDir>/../src/$1",
+    "^@@/(.*)$": "<rootDir>/../$1"
+  },
+  "transformIgnorePatterns": ["/node_modules/(?!(uuid)/)"],
+  "testTimeout": 10000,
+  "bail": false,
+  "verbose": true,
+  "collectCoverageFrom": [
+    "../src/modules/**/*.service.ts",
+    "!../src/modules/**/entities/*.ts",
+    "!../src/modules/**/dto/*.ts"
+  ],
+  "coverageDirectory": "./coverage-unit",
+  "coverageReporters": ["json", "lcov", "text", "html"]
+}

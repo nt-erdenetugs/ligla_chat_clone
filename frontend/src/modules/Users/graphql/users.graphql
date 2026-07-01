@@ -1,0 +1,157 @@
+fragment userFragment on User {
+  id
+  email
+  displayName
+  senderName
+  roleType
+  systemUserType
+  status
+  pictureUrl
+  qrUrl
+  createdAt
+  teams {
+    ...teamBaseFragment
+  }
+  organization {
+    id
+    name
+    displayName
+    fileUploadLiffId
+  }
+}
+
+fragment endUserFragment on EndUser {
+  userId
+  clientUserId
+  displayName
+  pictureUrl
+  createdAt
+  updatedAt
+}
+
+fragment senderFragment on Sender {
+  id
+  displayName
+  senderName
+  pictureUrl
+}
+
+query me {
+  me {
+    ...userFragment
+  }
+}
+
+query managers(
+  $organizationId: String
+  $cursorId: String
+  $cursorCreatedAt: DateTime
+  $take: Int
+) {
+  managers(
+    inputOrganizationId: $organizationId
+    cursorId: $cursorId
+    cursorCreatedAt: $cursorCreatedAt
+    take: $take
+  ) {
+    items {
+      ...userFragment
+    }
+    hasMore
+    nextCursorId
+    nextCursorCreatedAt
+  }
+}
+
+query allSelectableOperators(
+  $organizationId: String
+  $cursorId: String
+  $cursorCreatedAt: DateTime
+  $take: Int
+) {
+  allSelectableOperators(
+    inputOrganizationId: $organizationId
+    cursorId: $cursorId
+    cursorCreatedAt: $cursorCreatedAt
+    take: $take
+  ) {
+    items {
+      ...userFragment
+    }
+    hasMore
+    nextCursorId
+    nextCursorCreatedAt
+  }
+}
+
+query adminOperators($take: Int, $cursorId: String, $cursorCreatedAt: DateTime) {
+  adminOperators(take: $take, cursorId: $cursorId, cursorCreatedAt: $cursorCreatedAt) {
+    items {
+      ...userFragment
+    }
+    hasMore
+    nextCursorId
+    nextCursorCreatedAt
+  }
+}
+
+query users($skip: Int, $take: Int, $filter: FilterInput) {
+  users(skip: $skip, take: $take, filter: $filter) {
+    items {
+      ...userFragment
+    }
+    count
+  }
+  operatorCount
+  maxOperatorCount
+}
+
+query user($id: String!) {
+  user(id: $id) {
+    ...userFragment
+  }
+}
+
+query checkUserExists($email: String!) {
+  checkUserExists(email: $email)
+}
+
+mutation createUser($createUserInput: CreateUserInput!) {
+  createUser(createUserInput: $createUserInput) {
+    ...userFragment
+  }
+}
+
+mutation updateUser($updateUserInput: UpdateUserInput!) {
+  updateUser(updateUserInput: $updateUserInput) {
+    ...userFragment
+  }
+}
+
+mutation toggleUserStatus($id: String!) {
+  toggleUserStatus(id: $id) {
+    ...userFragment
+  }
+}
+
+mutation removeUser($id: String!) {
+  removeUser(id: $id)
+}
+
+mutation updateDisplayName($updateDisplayNameInput: UpdateDisplayNameInput!) {
+  updateDisplayName(updateDisplayNameInput: $updateDisplayNameInput) {
+    ...userFragment
+  }
+}
+
+mutation updateSenderName($updateSenderNameInput: UpdateSenderNameInput!) {
+  updateSenderName(updateSenderNameInput: $updateSenderNameInput) {
+    ...userFragment
+  }
+}
+
+mutation resetPassword($resetPasswordInput: ResetPasswordInput!) {
+  resetPassword(resetPasswordInput: $resetPasswordInput) {
+    ...userFragment
+  }
+}
